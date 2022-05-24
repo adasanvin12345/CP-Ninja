@@ -82,10 +82,12 @@ const app = express()
 const dbURI =
   'mongodb+srv://adarsh_modi_01:adarsh_modi_01@nodetuts.ei3k1.mongodb.net/node-tuts2?retryWrites=true&w=majority'
 
+const PORT = process.env.PORT || 3000
+
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
-    app.listen(3000)
+    app.listen(PORT)
     console.log('mongoDb connected successfully')
   })
   .catch((err) => console.log(err))
