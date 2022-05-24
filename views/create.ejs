@@ -1,21 +1,6 @@
 <html lang="en">
-  <script>
-    function loading() {
-      var button = document.getElementById('query_button')
-      setTimeout(() => {
-        button.innerHTML = 'Loading'
-      }, 0)
-      setTimeout(() => {
-        button.innerHTML = 'Loading.'
-      }, 200)
-      setTimeout(() => {
-        button.innerHTML = 'Loading..'
-      }, 1000)
-      setTimeout(() => {
-        button.innerHTML = 'Loading...'
-      }, 2000)
-    }
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <%- include("./partials/head.ejs") %>
 
   <body>
@@ -42,4 +27,21 @@
 
     <%- include("./partials/footer.ejs") %>
   </body>
+  <script>
+    function loading() {
+      var button = document.getElementById('query_button')
+      setTimeout(() => {
+        button.innerHTML = 'Loading'
+      }, 0)
+      setTimeout(() => {
+        button.innerHTML = 'Loading.'
+      }, 200)
+      setTimeout(() => {
+        button.innerHTML = 'Loading..'
+      }, 1000)
+      setTimeout(() => {
+        button.innerHTML = 'Loading...'
+      }, 2000)
+    }
+  </script>
 </html>

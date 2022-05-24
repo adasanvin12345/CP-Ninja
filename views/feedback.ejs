@@ -1,4 +1,5 @@
 <html lang="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%- include("./partials/head.ejs") %>
   <link
     rel="stylesheet"
@@ -15,11 +16,13 @@
           <% let i=0 %> <% let found = true %> <% if (feedbacks.length > 0) { %>
           <% feedbacks.forEach(feedback => { %> <% if(found === true) { %>
           <div class="feedback_content">
-            <p class="padding_top_bottom fbb">"<%= feedback.fb%>"</p>
+            <h4 class="padding_top_bottom fbb text-white">
+              <strong>"<%= feedback.fb%>"</strong>
+            </h4>
             <h3 class="margin_up text-white">
               <strong><%= feedback.name %></strong>
             </h3>
-            <h4 class="text-white">College : <%=feedback.college%></h4>
+            <h4 class="text-white"><%=feedback.college%></h4>
 
             <div class="icon-bar">
               <a href="<%= feedback.linkedin %>" class="linkedin"
@@ -41,7 +44,7 @@
           <% } %>
         </div>
       </div>
-      <div class="create-feedback content">
+      <div class="create-feedback">
         <form action="/feedbacks" method="POST">
           <div class="feedback_form">
             <h2>Please leave your Feedback !!</h2>
