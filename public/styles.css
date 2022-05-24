@@ -455,7 +455,12 @@ h3 {
 /* create styles */
 .create-blog form {
   width: 600px;
+  min-width: 200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .create-blog input,
 .create-blog textarea {
@@ -470,6 +475,22 @@ h3 {
 }
 textarea {
   height: 120px;
+}
+@media only screen and (max-width: 750px) {
+  /* For tablets: */
+  .create-blog form {
+    width: 400px;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 500px) {
+  /* For mobile phones: */
+  .create-blog form {
+    width: 280px;
+  }
+}
+@media only screen and (max-width: 350px) {
+  /* For mobile phones: */
 }
 .create-blog button {
   margin-top: 20px;
@@ -643,7 +664,10 @@ textarea {
     width: 300px;
     padding: 10px;
   }
-
+  .create-blog {
+    width: 300px;
+    /* padding: 10px; */
+  }
   .feedback_form {
     padding-left: 30px;
   }
