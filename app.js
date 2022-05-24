@@ -57,6 +57,7 @@ ps_codes = ps_codes.split('\n')
 
 // express app
 const app = express()
+// app.listen(3000)
 // connect to mongodb & listen for requests
 const dbURI =
   'mongodb+srv://adarsh_modi_01:adarsh_modi_01@nodetuts.ei3k1.mongodb.net/node-tuts2?retryWrites=true&w=majority'
@@ -131,11 +132,11 @@ top10_blogs_copy = []
 // routes
 
 app.get('/', (req, res) => {
-  console.log('search reached')
-  res.redirect('/create')
+  // res.redirect('/blogs')
+  console.log('index reached')
+  res.redirect('/blogs')
 })
 
-// feebacks page
 app.get('/feedbacks', (req, res) => {
   Fb.find({})
     .sort({ createdAt: -1 })
@@ -145,6 +146,7 @@ app.get('/feedbacks', (req, res) => {
     .catch((err) => {
       console.log(err)
     })
+  // res.render('feedback', { title: 'All Feedbacks' })
   console.log('/feedbacks reached')
 })
 
@@ -243,6 +245,7 @@ function top10(q) {
     all_blogs.push([similarity_value, i])
   }
   all_blogs.sort((a, b) => (a[0] > b[0] ? -1 : 1))
+  // // // console.log(all_blogs)
   top10_blogs = []
   for (let i = 0; i < 15; i++) {
     top10_blogs.push(all_blogs[i][1] + 1)
