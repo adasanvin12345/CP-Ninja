@@ -754,7 +754,7 @@ textarea {
   }
   .feedbacks {
     padding: 00px;
-    margin: 00px;
+    /* margin: 00px; */
     width: fit-content;
     min-width: 400px;
   }
