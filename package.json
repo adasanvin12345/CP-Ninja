@@ -2,7 +2,7 @@
   "name": "node-crash-course-lesson-10",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "create.js",
   "scripts": {
     "start": "node app.js"
   },
