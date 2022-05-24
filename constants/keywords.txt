@@ -35,7 +35,7 @@ single
 spacesepar
 integral
 output
-testcas
+testcase
 constraint
 abcx
 abc
@@ -44,7 +44,7 @@ subtask
 point
 original
 sample
-explan
+explane
 didnt
 authority
 nandeeshadm
@@ -54,7 +54,7 @@ tag
 cakewalk
 conditionalstat
 march
-difficulti
+difficulty
 rate
 date
 adult
@@ -1632,7 +1632,7 @@ tuzik
 sumner
 explore
 sumd
-sumsum
+sum
 pavel
 kostyabi
 httpsdiscusscodechefcomproblemsppsum
@@ -1937,7 +1937,7 @@ fbedfcbdaebaaceeba
 yourcrushlovesyouback
 sjshohag
 httpsdiscusscodechefcomproblemseventu
-subarrai
+subarray
 httpsdiscusscodechefcomproblemschefarrp
 bag
 checkin
