@@ -1,0 +1,116 @@
+You are given NN binary strings S1,S2,…,SNS1,S2,…,SN, each of length MM. You want to concatenate all the NN strings in some order to form a single large string of length N⋅MN⋅M. Find the minimum possible number of inversions the resulting string can have.
+A binary string is defined as a string consisting only of '00' and '11'.
+An inversion in a binary string SS is a pair of indices (i,j)(i,j) such that i<ji<j and SiSi = '11', SjSj = '00'. For example, the string S=S= "0101001010" contains 33 inversions : (2,3)(2,3), (2,5),(2,5), (4,5)(4,5).
+Note that you are not allowed to change the order of characters within any of the strings SiSi - you are only allowed to concatenate the strings themselves in whatever order you choose. For example, if you have "0000" and "1010" you can form "00100010" and "10001000", but not "00010001".
+Input Format
+
+The first line of input contains a single integer TT denoting the number of test cases. The description of TT test cases follows.
+The first line of each test case contains two space-separated integers N,MN,M.
+NN lines follow, the ithith of which contains the string SiSi of length MM.
+
+Output Format
+For each test case, print a single line containing one integer - the minimum possible number of inversions in the resulting string.
+Constraints
+
+1≤T≤1031≤T≤103
+2≤N≤1052≤N≤105
+1≤M≤1051≤M≤105
+2≤N⋅M≤2⋅1052≤N⋅M≤2⋅105
+|Si|=M|Si|=M
+SiSi contains only characters '00' and '11'.
+Sum of N⋅MN⋅M over all test cases does not exceed 106106.
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+4
+2 1
+0
+1
+3 2
+10
+00
+01
+2 4
+0010
+1011
+3 4
+1011
+1101
+0101
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+0
+2
+3
+11
+
+
+Explanation
+Test case 11: Two strings can be formed : S1+S2=S1+S2="0101", S2+S1S2+S1= "1010". The first string does not have any inversion while the second has one inversion : (1,2)(1,2).
+Test case 22:  Both S2+S1+S3=S2+S1+S3="001001001001", S2+S3+S1=S2+S3+S1="000110000110" contain 22 inversions. It can be verified that no other order results in fewer inversions.
+
+
+
+Author:
+5★soumyadeep_21
+
+
+Editorial:
+https://discuss.codechef.com/problems/BININV
+
+
+Tags:
+
+               
+                 String, Sorting, Observation
+                 
+                     
+                     Data Structures, Algorithms
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1865
+
+
+Date Added:
+10-11-2021
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

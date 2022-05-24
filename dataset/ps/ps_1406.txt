@@ -1,0 +1,108 @@
+You are given an integer NN. Let KK be a divisor of NN of your choice such that K>1K>1, and let M=NKM=NK. You need to find the smallest KK such that MM has as many divisors as possible.
+Note: UU is a divisor of VV if VV is divisible by UU.
+Input Format
+
+The first line of the input contains an integer TT - the number of test cases. The test cases then follow.
+The only line of each test case contains an integer NN.
+
+Output Format
+For each test case, output in a single line minimum value of KK such that MM has as many divisors as possible.
+Constraints
+
+1≤T≤30001≤T≤3000
+2≤N≤1092≤N≤109
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+3
+3
+4
+6
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+3
+2
+2
+
+
+Explanation
+
+Test case 11: The only possible value for KK is 33, and that is the answer.
+Test case 22: There are two cases:
+K=2K=2. Then M=42=2M=42=2, which has 22 divisors (11 and 22).
+K=4K=4. Then M=44=1M=44=1, which has 11 divisor (11).
+
+Therefore the answer is 22.
+
+Test case 33: There are three cases:
+K=2K=2. Then M=62=3M=62=3, which has 22 divisors (11 and 33).
+K=3K=3. Then M=63=2M=63=2, which has 22 divisors (11 and 22).
+K=6K=6. Then M=66=1M=66=1, which has 11 divisor (11).
+
+Therefore the answer is 22.
+
+
+
+Author:
+5★manoj_vajpeyi
+
+
+Editorial:
+https://discuss.codechef.com/problems/MXFACS
+
+
+Tags:
+
+               
+                 Prime Divisors, Greedy
+                 
+                     
+                     Mathematics, Number Theory, Integer Factorisation, Divisors, Algorithms
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+2006
+
+
+Date Added:
+6-12-2021
+
+
+Time Limit:
+0.5 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

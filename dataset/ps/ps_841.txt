@@ -1,0 +1,119 @@
+You are given an integer NN where N≤10N≤10. Consider any array AA with length NN where each element can either be 00, 11, or 22, we define f(A)f(A) as the number of extrema in AA. You need to find the sum of f(A)f(A) over all possible arrays AA.
+Note:
+
+In an array AA, we consider AiAi as an extremum if it is strictly greater than both of its neighbors (i.e. Ai>Ai−1Ai>Ai−1 and Ai>Ai+1Ai>Ai+1), or if it is strictly smaller than both of its neighbors (i.e. Ai<Ai−1Ai<Ai−1 and Ai<Ai+1Ai<Ai+1). Note that first and last elements are not counted as extremum.
+Extrema is the plural of extremum.
+
+Input Format
+
+The first line of the input contains an integer TT - the number of test cases. The test cases then follow.
+The only line of each test case contains one integer NN.
+
+Output Format
+For each test case, output on a single the sum of f(A)f(A) over all possible arrays AA.
+Constraints
+
+1≤T≤101≤T≤10
+1≤N≤101≤N≤10
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+3
+1
+3
+5
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+0
+10
+270
+
+
+Explanation
+
+Test case 11:
+A=[0]A=[0]. Then f(A)=0f(A)=0.
+A=[1]A=[1]. Then f(A)=0f(A)=0.
+A=[2]A=[2]. Then f(A)=0f(A)=0.
+
+Therefore the answer is 00.
+
+Test case 22: There are 1010 arrays AA with f(A)=1f(A)=1:
+A=[0,1,0]A=[0,1,0].
+A=[0,2,0]A=[0,2,0].
+A=[0,2,1]A=[0,2,1].
+A=[1,2,0]A=[1,2,0].
+A=[1,2,1]A=[1,2,1].
+A=[2,1,2]A=[2,1,2].
+A=[2,0,2]A=[2,0,2].
+A=[2,0,1]A=[2,0,1].
+A=[1,0,2]A=[1,0,2].
+A=[1,0,1]A=[1,0,1]. 
+
+The remaining AA's has f(A)=0f(A)=0. Therefore the answer is 1⋅10=101⋅10=10.
+
+
+
+Author:
+5★manoj_vajpeyi
+
+
+Editorial:
+https://discuss.codechef.com/problems/CNTPEAK
+
+
+Tags:
+
+               
+                 Binary Exponentiation, Arithmetic, ad-hoc
+                 
+                     
+                     Mathematics, Number Theory, Basic Maths, Exponentiation, Algorithms, Constructive
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1628
+
+
+Date Added:
+28-12-2021
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

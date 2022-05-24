@@ -1,0 +1,65 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="blogs">
+      <div class="blogs_left">
+        <div class="blogs_header">
+          <% if(query != undefined && query.length>0) {%>
+          <p>
+            <strong>Search Results based on the query ></strong> <%= query%>
+          </p>
+          <% } else{ %>
+          <h3>All Questions</h3>
+          <%}%>
+        </div>
+        <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+        <a class="single" href="/blogs/<%= blog._id %>">
+          <h3 class="title">
+            <strong><%= blog.title %></strong> [ <%=blog.code%> ] [Difficulty :
+            <%= blog.diff%>]
+          </h3>
+          <p class="snippet"><%= blog.statement.slice(0,50)+"..." %></p>
+        </a>
+        <% }) %> <% } else { %>
+        <p>There are no blogs to display...</p>
+        <% } %>
+      </div>
+      <div class="blogs_right">
+        <div class="blogs_right_content">
+          <h3>SORT BY:</h3>
+          <form action="/blogs" method="POST" class="form_class">
+            <label class="text-white give_margin" for="category"
+              >Write a category( 'diff' | 'code' | 'submissions' ) :</label
+            >
+            <input type="text" id="category" name="category" required />
+            <button class="sort_button" id="sort_button" onclick="loading()">
+              SORT
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+  </body>
+  <script>
+    function loading() {
+      var button = document.getElementById('sort_button')
+      setTimeout(() => {
+        button.innerHTML = 'Loading'
+      }, 0)
+      setTimeout(() => {
+        button.innerHTML = 'Loading.'
+      }, 200)
+      setTimeout(() => {
+        button.innerHTML = 'Loading..'
+      }, 1000)
+      setTimeout(() => {
+        button.innerHTML = 'Loading...'
+      }, 2000)
+    }
+  </script>
+</html>

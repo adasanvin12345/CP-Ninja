@@ -1,0 +1,98 @@
+An index ii in a permutation PP of length NN is said to be good if:
+
+PiPi is divisible by ii
+
+You are given 22 integers NN and KK. You need to construct a permutation PP of length NN such that exactly KK indices in that permutation are good.
+If no such permutation exists, output −1−1.
+If multiple such permutations exist, output any.
+Input Format
+
+The first line contains a single integer TT - the number of test cases. Then the test cases follow.
+The first and only line of each test case contains two integers NN and KK - the length of the permutation to be constructed and the number of good indices.
+
+Output Format
+For each test case, output any permutation satisfying the given condition.
+Constraints
+
+1≤T≤10001≤T≤1000
+1≤N≤1051≤N≤105
+1≤K≤N1≤K≤N
+Sum of NN over all testcases does not exceed 2⋅1052⋅105
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+2
+1 1
+6 2
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+1
+4 5 6 1 2 3
+
+
+Explanation
+Test case-1: In [1][1], P1=1P1=1 is divisible by 11. Therefore it is a valid permutation having 11 good index.
+Test case-2: In [4,5,6,1,2,3][4,5,6,1,2,3], P1=4P1=4 is divisible by 11 and P3=6P3=6 is divisible by 33. Therefore it is a valid permutation having 22 good indices.
+
+
+
+Author:
+6★munch_01
+
+
+Editorial:
+https://discuss.codechef.com/problems/PERFPERM
+
+
+Tags:
+
+               
+                 constructive, cook138, easy, munch_01
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1696
+
+
+Date Added:
+7-02-2022
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

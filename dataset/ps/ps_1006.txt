@@ -1,0 +1,107 @@
+“I am not in danger, Skyler. I am the danger. A guy opens his door and gets shot, and you think that of me? No! I am the one who knocks!”
+Skyler fears Walter and ponders escaping to Colorado. Walter wants to clean his lab as soon as possible and then go back home to his wife. 
+In order clean his lab, he has to achieve cleaning level of lab as YY. The current cleaning level of the lab is XX. 
+He must choose one positive odd integer aa and one positive even integer bb. Note that, he cannot change aa or bb once he starts cleaning.
+He can perform any one of the following operations for one round of cleaning:  
+
+Replace XX with X+aX+a.  
+Replace XX with X−bX−b.
+
+Find minimum number of rounds (possibly zero) to make lab clean.
+Input:
+
+First line will contain TT, number of test cases. TT testcases follow :  
+Each test case contains two space separated integers X,YX,Y. 
+
+Output:
+For each test case, output an integer denoting minimum number of rounds to clean the lab.
+Constraints
+
+1≤T≤1051≤T≤105
+|X|,|Y|≤109|X|,|Y|≤109
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+3
+0 5
+4 -5
+0 10000001
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+1
+2
+1
+
+
+Explanation
+
+For the first testcase, you can convert XX to YY  by choosing a=5a=5 and b=2b=2.
+It will cost minimum of 11 cleaning round. You can select any other combination of a,ba,b satisfying above condition but will take minimum of 11 cleaning round in any case.
+For the second testcase, you can convert XX to YY by choosing a=1a=1 and b=10b=10. In first round they will replace XX to X+aX+a and then in second round replace to X−bX−b. You can perform only one operation in one round.
+
+
+
+
+Author:
+5★aman1108
+
+
+Editorial:
+https://discuss.codechef.com/problems/EOOPR
+
+
+Tags:
+
+               
+                 Case work, Conditional Statements, ad-hoc
+                 
+                     
+                     Special, Basic Programming Concepts, Algorithms, Constructive
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1749
+
+
+Date Added:
+12-10-2020
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

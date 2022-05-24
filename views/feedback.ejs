@@ -1,0 +1,90 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div class="feedback_container">
+      <div class="feedbacks">
+        <div class="blogs_header">
+          <h1 class="title">Recent Feedbacks</h1>
+        </div>
+        <div class="feedbacks_content">
+          <% let i=0 %> <% let found = true %> <% if (feedbacks.length > 0) { %>
+          <% feedbacks.forEach(feedback => { %> <% if(found === true) { %>
+          <div class="feedback_content">
+            <p class="padding_top_bottom fbb">"<%= feedback.fb%>"</p>
+            <h3 class="margin_up text-white">
+              <strong><%= feedback.name %></strong>
+            </h3>
+            <h4 class="text-white">College : <%=feedback.college%></h4>
+
+            <div class="icon-bar">
+              <a href="<%= feedback.linkedin %>" class="linkedin"
+                ><i class="fa fa-linkedin"></i
+              ></a>
+              <a href="<%= feedback.github %>" class="github"
+                ><i class="fa fa-github"></i
+              ></a>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=<%= feedback.email %>"
+                class="email"
+                ><i class="fa fa-envelope"></i
+              ></a>
+            </div>
+          </div>
+          <% } %> <% i += 1 %> <% if(i === 3) {%> <% found = false %> <% } %> <%
+          }) %> <% } else { %>
+          <p>There are no feedbacks to display...</p>
+          <% } %>
+        </div>
+      </div>
+      <div class="create-feedback content">
+        <form action="/feedbacks" method="POST">
+          <div class="feedback_form">
+            <h2>Please leave your Feedback !!</h2>
+          </div>
+          <label class="text-white" for="name">Name :</label>
+          <input type="text" id="name" name="name" required />
+          <label class="text-white" for="email">Email :</label>
+          <input type="email" id="email" name="email" required />
+          <label class="text-white" for="college">College/University :</label>
+          <input type="text" id="college" name="college" required />
+          <label class="text-white" for="linkedin">LinkedIn (URL):</label>
+          <input type="url" id="linkedin" name="linkedin" />
+          <label class="text-white" for="github">Github (URL):</label>
+          <input type="url" id="github" name="github" />
+          <label class="text-white" for="fb">Feedback :</label>
+          <textarea id="fb" name="fb" required></textarea>
+          <button
+            class="feedback_button"
+            id="feedback_submit"
+            onclick="loading()"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <%- include("./partials/footer2.ejs") %>
+  </body>
+  <script>
+    function loading() {
+      var button = document.getElementById('feedback_submit')
+      setTimeout(() => {
+        button.innerHTML = 'Loading.'
+      }, 0)
+      setTimeout(() => {
+        button.innerHTML = 'Loading..'
+      }, 500)
+      setTimeout(() => {
+        button.innerHTML = 'Loading...'
+      }, 1000)
+      setTimeout(() => {
+        button.innerHTML = 'Feedback Saved!'
+      }, 1500)
+    }
+  </script>
+</html>

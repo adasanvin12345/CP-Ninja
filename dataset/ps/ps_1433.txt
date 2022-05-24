@@ -1,0 +1,115 @@
+You are given an array AA with NN positive elements A1,A2,…,ANA1,A2,…,AN. You are also given a function SS on any array CC with length NN defined as follow:
+S(C)S(C) = ∑i=1N(Ci−1+Ci+12−Ci)∑i=1N(Ci−1+Ci+12−Ci)
+Note that conventionally, we define all elements outside the range of the array to have value 00. In this context, C0=CN+1=0C0=CN+1=0.
+Consider the following process:
+
+Choose a permutation PP of values from 11 to NN uniformly randomly.
+Let BB be the array of NN elements B1,B2,…,BNB1,B2,…,BN, where Bi=APiBi=APi.
+
+Define VV as the expected value of |S(B)||S(B)|. Find ⌊V⌋⌊V⌋.
+Note : 
+
+|X||X| denotes absolute value of XX
+⌊X⌋⌊X⌋ is the greatest integer that does not exceed XX.
+
+Input Format
+
+The first line of the input contains an integer TT - the number of test cases. The test cases then follow.
+The first line of each test case contains an integer NN - the size of array.
+The second line of each test case contains NN integers A1,A2,…,ANA1,A2,…,AN - the elements of the array.
+
+Output Format
+For each testcase, output ⌊V⌋⌊V⌋ in a new line.
+Constraints
+
+1≤T≤101≤T≤10
+1≤N≤2⋅1051≤N≤2⋅105
+1≤Ai≤2⋅1051≤Ai≤2⋅105
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+2
+2
+1 1
+3
+8 2 2
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+1
+4
+
+
+Explanation
+
+Test case 22:
+With P=[1,2,3]P=[1,2,3] or P=[1,3,2]P=[1,3,2], we obtain B=[8,2,2]B=[8,2,2], which has |S(B)|=|(0+22−8)+(8+22−2)+(2+02−2)|=5|S(B)|=|(0+22−8)+(8+22−2)+(2+02−2)|=5.
+With P=[2,1,3]P=[2,1,3] or P=[3,1,2]P=[3,1,2], we obtain B=[2,8,2]B=[2,8,2], which has |S(B)|=|(0+82−2)+(2+22−8)+(8+02−2)|=2|S(B)|=|(0+82−2)+(2+22−8)+(8+02−2)|=2.
+With P=[2,3,1]P=[2,3,1] or P=[3,2,1]P=[3,2,1], we obtain B=[2,2,8]B=[2,2,8], which has |S(B)|=|(0+22−2)+(2+82−2)+(2+02−8)|=5|S(B)|=|(0+22−2)+(2+82−2)+(2+02−8)|=5.
+
+Therefore V=5+5+2+2+5+56=4V=5+5+2+2+5+56=4. We output ⌊V⌋=4⌊V⌋=4.
+
+
+
+Author:
+6★satyacoder
+
+
+Editorial:
+https://discuss.codechef.com/problems/EVOFWEIRDSUM
+
+
+Tags:
+
+               
+                 Basic Maths, Contribution Trick
+                 
+                     
+                     Mathematics, Probability, Expected Value
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+2018
+
+
+Date Added:
+21-11-2021
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

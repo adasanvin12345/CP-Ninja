@@ -1,0 +1,45 @@
+<html lang="en">
+  <script>
+    function loading() {
+      var button = document.getElementById('query_button')
+      setTimeout(() => {
+        button.innerHTML = 'Loading'
+      }, 0)
+      setTimeout(() => {
+        button.innerHTML = 'Loading.'
+      }, 200)
+      setTimeout(() => {
+        button.innerHTML = 'Loading..'
+      }, 1000)
+      setTimeout(() => {
+        button.innerHTML = 'Loading...'
+      }, 2000)
+    }
+  </script>
+  <%- include("./partials/head.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="create-blog content">
+      <form action="/blogs" class="form_class" method="POST">
+        <!-- <form action="/blogs" method="POST"></form> -->
+        <!-- <label for="title">Blog title:</label>
+      <input type="text" id="title" name="title" required> -->
+        <label class="text-white" for="query">Search a Question:</label>
+        <input
+          class="extend_width"
+          type="text"
+          id="query"
+          name="query"
+          required
+        />
+        <!-- <label for="body">Blog body:</label>
+      <textarea id="body" name="body" required></textarea> -->
+        <button id="query_button" onclick="loading()">Submit</button>
+      </form>
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+  </body>
+</html>

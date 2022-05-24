@@ -1,0 +1,100 @@
+Chef feels that being the Head Chef is a very difficult job. More than cooking, managing the kitchen and distributing the work between various cooks proves to be a tiring task. There are many dishes to be prepared. And he has a team of talented cooks to do this for him. But the Chef always has a problem distributing tasks among them. For a cook i, the Chef wants to give him atleast xi dishes to prepare in a day. But different cooks have different capacities. Any cook i can cook atmost yi number of dishes in a single day. Chef is very aware of every cook's capability and will not give anyone more work than his maximum capacity. Now, he wants you to help him out here. 
+Your task will be simple: Tell him the number of ways in which he can distribute the given number of dishes among his team.
+Input:
+First line contains T, number of tests.
+Each test begins with a single line containing 2 space separated integers: n and m, the number of dishes to be prepared and the number of cooks in Chef's team.
+Then follow m lines. The ith line contains 2 space separater integers which are the corresponding xi and yi.
+Output:
+For every test case, output a single integer: the number of ways of distributing the work mod 1000000007.
+Constraints:
+1<=T<=50
+1<=n,m<=100
+0<=xi,yi<=100
+
+                        Sample Input 1
+                        
+
+
+
+
+
+1
+3 2
+0 3
+1 3
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+3
+
+
+Explanation
+Test case 11: Chef can distribute the dishes in the following three ways:
+
+00 dishes for the first cook and 33 dishes for the second cook.
+11 dish for the first cook and 22 dishes for the second cook.
+22 dishes for the first cook and 11 dish for the second cook.
+
+
+
+
+Author:
+vamsi_adm
+
+
+Tester:
+2★masked_zorro
+
+
+Editorial:
+https://discuss.codechef.com/problems/DISHDIS
+
+
+Tags:
+
+               
+                 Dynamic Programming
+                 
+                     
+                     Algorithms
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1596
+
+
+Date Added:
+2-08-2011
+
+
+Time Limit:
+0.244444 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, PERL, SCALA, LUA, BASH, JS, LISP sbcl, PAS gpc, BF, CLOJ, D, CAML, FORT, ASM, FS, WSPC, LISP clisp, SCM guile, PERL6, ERL, CLPS, PRLG, ICK, NICE, ICON, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

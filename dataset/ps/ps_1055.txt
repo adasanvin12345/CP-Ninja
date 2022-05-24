@@ -1,0 +1,102 @@
+It's your birthday today! So, you ask your dad to buy a brand new bicycle. But your dad knows you are weak in math. Hence he gives you the following task. If you solve it, he will purchase the bicycle you want! The task is:
+You are given a binary string. NN denotes the length of a binary string and MM denotes the number of occurrences of the character 11 in the string SS.
+Let F(S)F(S) be a function that gives the number of different substrings of string SS, made up of the character 00 only. 
+Let Subl,rSubl,r denote the substring of SS starting from lthlth index and terminating at rthrth index. Two substrings Subp,qSubp,q and Subr,sSubr,s are considered same if p=rp=r and q=sq=s otherwise the two substrings are considered different. 
+Among all possible strings SS of length NN having exactly MM occurrences of the character 11, print the minimum possible value of F(S)F(S).
+Input Format
+
+First line of input contains a single integer TT, denoting the number of test cases. Then the description of the TT test case follows.
+Each test case contains one line of input.
+The first line contains two integers NN and MM.
+
+Output Format
+For each test case, output a single line answer containing an integer.
+Constraints
+
+1≤T≤2⋅1051≤T≤2⋅105
+1≤N≤1061≤N≤106
+0≤M≤N0≤M≤N
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+2
+3 1
+7 2
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+2
+7
+
+
+Explanation
+In the first test case, there exists only 3 binary strings of length NN, having exactly MM occurrences of the character 11.
+For S=100S=100 value of F(S)=3F(S)=3
+For S=001S=001 value of F(S)=3F(S)=3
+For S=010S=010 value of F(S)=2F(S)=2
+So for string S=010S=010 we get a minimum value of F(S)=2F(S)=2.
+
+
+
+Author:
+5★kaushal_26
+
+
+Editorial:
+https://discuss.codechef.com/problems/SUBMIMX
+
+
+Tags:
+
+               
+                 Basic Maths
+                 
+                     
+                     Mathematics
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1778
+
+
+Date Added:
+12-11-2021
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

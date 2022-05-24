@@ -1,0 +1,109 @@
+You may have tried your level best to help Chef but Dr Doof has managed to come up with his masterplan in the meantime. Sadly, you have to help Chef once again. Dr Doof has designed a parenthesis-inator. It throws a stream of NN brackets at the target, 11 bracket per second. The brackets can either be opening or closing. Chef appears in front of the stream at time tt. If Chef faces an opening bracket, he gets hit. However, if he faces a closing bracket, he may choose to let it pass through him (Chef is immune to closing brackets). Chef gets a chance to counter attack Doof as soon as he finds a balanced non-empty bracket sequence. Help Chef by providing him the minimum time xx at which he will be able to launch his counter attack. If Chef is unable to counter attack, answer −1−1.
+Formally, you are given a string SS of length NN consisting only of opening brackets (( and closing brackets )). The substring of SS starting at index LL and ending at index RR, i.e. SLSL+1…SRSLSL+1…SR is denoted by S[L,R]S[L,R] . Consider QQ cases. In the ithith case, Chef appears at time titi (1≤ti≤N)(1≤ti≤N) and faces all characters from index titi to NN. Find the minimum index xx (ti≤x≤N)(ti≤x≤N) such that the substring S[ti,x]S[ti,x] contains a non-empty balanced bracket subsequence containing the same number of opening brackets as S[ti,x]S[ti,x] (i.e., you cannot remove any opening bracket from the substring). If such an xx does not exist, print −1−1.
+A string XX is called a subsequence of a string YY if it is possible to obtain XX by erasing some (possibly zero) characters from YY without changing the order of the remaining characters.
+A balanced bracket sequence is defined as:  
+
+an empty string is a balanced bracket sequence.
+if ss is a balanced bracket sequence, then so is (s)(s).
+if ss and tt are balanced bracket sequences, then so is stst.
+
+Note:−Note:− The input files are large. The use of Fast I/O is recommended.
+Input
+
+The first line contains a single integer TT denoting the number of testcases.
+The first line of each test case contains the string SS.
+The next line contains a single integer QQ denoting the number of cases to consider.
+The next line contains QQ space separated integers, each denoting titi.
+
+Output
+For each query, print the minimum value of xx in a separate line. If no such xx exists, print −1−1.
+Constraints
+
+1≤T≤1031≤T≤103
+1≤|S|≤1071≤|S|≤107
+1≤Q≤1061≤Q≤106
+1≤ti≤N1≤ti≤N
+Every character of SS is either (( or )).
+Sum of |S||S| and QQ over all testcases for a particular test file does not exceed 107107 and 106106 respectively.
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+1
+)())((()
+3
+1 7 6
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+3
+8
+-1
+
+
+Explanation
+For the first query, Chef chooses to let S1S1 pass through him, gets hit by S2S2 and finally completes a balanced bracket sequence by adding S3S3 to S2S2 at time xx = 33.
+
+
+
+Author:
+6★sarthakmanna
+
+
+Editorial:
+https://discuss.codechef.com/problems/CLBRKT
+
+
+Tags:
+
+               
+                 Stacks, String, ad-hoc
+                 
+                     
+                     Data Structures, Algorithms, Constructive
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1983
+
+
+Date Added:
+19-06-2020
+
+
+Time Limit:
+1.5 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

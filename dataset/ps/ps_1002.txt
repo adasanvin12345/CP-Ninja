@@ -1,0 +1,112 @@
+Read problem statements in Hindi, Bengali, Mandarin Chinese, Russian, and Vietnamese as well.
+Chef has NN dishes, numbered 11 through NN. For each valid ii, dish ii is described by a string DiDi containing only lowercase vowels, i.e. characters 'a', 'e', 'i', 'o', 'u'.
+A meal consists of exactly two dishes. Preparing a meal from dishes ii and jj (i≠ji≠j) means concatenating the strings DiDi and DjDj in an arbitrary order into a string MM describing the meal. Chef likes this meal if the string MM contains each lowercase vowel at least once.
+Now, Chef is wondering - what is the total number of (unordered) pairs of dishes such that he likes the meal prepared from these dishes?
+Input
+
+The first line of the input contains a single integer TT denoting the number of test cases. The description of TT test cases follows.
+The first line of each test case contains a single integer NN.
+NN lines follow. For each valid ii, the ii-th of these lines contains a single string DiDi.
+
+Output
+For each test case, print a single line containing one integer - the number of ways to prepare a meal Chef likes.
+Constraints
+
+1≤T≤1,0001≤T≤1,000
+1≤N≤1051≤N≤105
+1≤|Di|≤1,0001≤|Di|≤1,000 for each valid ii
+the sum of all |D_i| over all test cases does not exceed 3⋅1073⋅107
+
+Subtasks
+Subtask #1 (20 points):
+
+1≤T≤1001≤T≤100
+1≤N≤1001≤N≤100
+the sum of all |D_i| over all test cases does not exceed 2000020000
+
+Subtask #2 (80 points): original constraints
+
+                        Sample Input 1
+                        
+
+
+
+
+
+1
+3
+aaooaoaooa
+uiieieiieieuuu
+aeioooeeiiaiei
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+2
+
+
+Explanation
+Example case 1: There are three possible meals:
+
+A meal prepared from dishes 11 and 22 (for example "aaooaoaooauiieieiieieuuu") contains all vowels.
+A meal prepared from dishes 11 and 33 (for example "aaooaoaooaaeioooeeiiaiei") does not contain 'u'.
+A meal prepared from dishes 22 and 33 (for example "uiieieiieieuuuaeioooeeiiaiei") contains all vowels.
+
+
+
+
+Author:
+3★iamabjain
+
+
+Editorial:
+https://discuss.codechef.com/problems/JAIN
+
+
+Tags:
+
+               
+                 String, Basic Maths
+                 
+                     
+                     Data Structures, Mathematics
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1747
+
+
+Date Added:
+19-05-2017
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SCM guile, PERL6, ERL, CLPS, PRLG, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

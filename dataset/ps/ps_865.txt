@@ -1,0 +1,127 @@
+Alice initially has a string SS of length NN, and she decides to modify it! Her modification consists of KK steps numbered from 11 to KK. In the ii-th step, Alice reverses the prefix of length ii of SS.
+For example, suppose Alice starts with S=abfertyS=abferty, and she modifies it via 33 steps, then:
+
+After the first step, abferty→S=abfertyabferty→S=abferty
+After the second step, abferty→S=bafertyabferty→S=baferty
+After the third step, baferty→S=fabertybaferty→S=faberty
+So after 33 steps, her string becomes S=fabertyS=faberty.
+
+After performing her KK-step modification, Alice ends up with the string S′S′. Now she challenges you to find the original string SS. Can you do it?
+Input Format
+
+The first line of the input contains a single integer TT - the number of test cases. The test cases then follow.
+The first line of the test case contains two space-separated integers NN and KK - the length of the string and the number of steps in Alice's modification.
+The second line of the test case contains S′S′ - the final string obtained after the modification.
+
+Output Format
+For each test case, output the original string SS.
+Constraints
+
+1≤T≤10001≤T≤1000
+1≤N≤1061≤N≤106
+1≤K≤N1≤K≤N
+|S′|=N|S′|=N
+S′S′ contains only lowercase alphabets
+Sum of NN overall cases does not exceed 106106.
+
+Subtasks
+
+Subtask 11 (30 points): 1≤N⋅K≤20001≤N⋅K≤2000
+Subtask 22 (70 points): Original constraints
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+3
+7 3
+faberty
+7 5
+bbaaaba
+4 4
+zxwy
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+abferty
+aababba
+wxyz
+
+
+Explanation
+
+Test case 22: The modification steps from SS to S′S′ is as follow:
+11-st step: aababba→S=aababbaaababba→S=aababba
+22-nd step: aababba→S=aababbaaababba→S=aababba
+33-rd step: aababba→S=baaabbaaababba→S=baaabba
+44-th step: baaabba→S=aaabbbabaaabba→S=aaabbba
+55-th step: aaabbba→S=bbaaabaaaabbba→S=bbaaaba
+Test case 33: The modification steps from SS to S′S′ is as follow:
+11-st step: wxyz→S=wxyzwxyz→S=wxyz
+22-nd step: wxyz→S=xwyzwxyz→S=xwyz
+33-rd step: xwyz→S=ywxzxwyz→S=ywxz
+44-th step: ywxz→S=zxwyywxz→S=zxwy
+
+
+
+
+Author:
+6★munch_01
+
+
+Editorial:
+https://discuss.codechef.com/problems/RMNTREV
+
+
+Tags:
+
+               
+                 String, ad-hoc, Observation, Two pointers
+                 
+                     
+                     Data Structures, Algorithms, Constructive, Simple Algos
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1646
+
+
+Date Added:
+23-12-2021
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

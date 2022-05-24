@@ -1,0 +1,89 @@
+You are given a sequence of integers A1,A2,…,ANA1,A2,…,AN and a magical non-zero integer xx
+You have to select a subsegment of sequence A (possibly empty), and replace the elements in that subsegment after dividing them by x.
+Formally, replace any one subsegment Al,Al+1,...,ArAl,Al+1,...,Ar with Al/x,Al+1/x,...,Ar/xAl/x,Al+1/x,...,Ar/x where l≤rl≤r
+What is the minimum possible sum you can obtain?
+Note: The given operation can only be performed once
+Input 
+The first line of the input contains two positive integer n denoting the size of array, and x
+denoting the magical integer
+Next line contains NN space separated integers
+Output
+Single line containing one real number, denoting the minimum possible sum you can obtain. Your answer will be considered correct if its absolute or relative error does not exceed 10−210−2
+Constraints
+1≤n≤1031≤n≤103
+1≤|x|≤1031≤|x|≤103
+|Ai|≤103|Ai|≤103
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+3 2
+1 -2 3
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+0.5
+
+
+Explanation
+Array 1 -2 3, selecting subsegment {3}, you get 1 -2 1.5, which gives sum=0.5sum=0.5
+
+
+
+Author:
+5★kalpitk
+
+
+Tags:
+
+               
+                 ad-hoc
+                 
+                     
+                     Algorithms, Constructive
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1597
+
+
+Date Added:
+3-04-2019
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SCM guile, PERL6, ERL, CLPS, PRLG, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

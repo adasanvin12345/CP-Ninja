@@ -1,0 +1,111 @@
+You are given a sequence AA of NN integers such that every element is a non-negative power of 22.
+A sequence is called good if its sum is a non-negative power of 22. You would like to turn AA into a good sequence.
+To achieve this, you can perform the following operation on AA:
+
+Pick a non-empty subsequence of AA, pick a positive integer XX such that X≤230X≤230, and multiply every element of this subsequence by XX.
+
+Find the minimum number of operations required to turn AA into a good sequence. Also, find one sequence of operations which does this. If there are multiple possible answers, you may find any of them.
+Input Format
+
+The first line of input contains a single integer TT, denoting the number of test cases. The description of TT test cases follows.
+The first line of each test case contains a single integer NN.
+The second line of each test case contains NN space-separated integers A1,A2,…,ANA1,A2,…,AN. 
+
+Output Format
+For each test case, print the answer in the following format:
+
+First, print one line containing an integer MM, denoting the minimum number of moves required.
+Then, print 2M2M lines describing MM operations.
+Each operation is described by 22 lines.
+On the first line, print two space-separated integers KK and XX, denoting the size of the subsequence and the multiplier for this operation.
+On the second line, print KK distinct space-separated integers denoting the indices of the elements chosen to be multiplied in this operation. These KK integers can be printed in any order.
+
+Constraints
+
+1≤T≤10001≤T≤1000
+1≤N≤1001≤N≤100
+1≤Ai≤2201≤Ai≤220
+
+Subtasks
+Subtask #1 (100 points): Original constraints
+
+                        Sample Input 1
+                        
+
+
+
+
+
+2
+4
+4 8 4 32
+3
+2 2 4
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+1
+3 2
+1 2 3
+0
+
+
+Explanation
+Test case 11: Multiplying the 1st,2nd1st,2nd and 3rd3rd elements by 22 turns the array into [8,16,8,32][8,16,8,32], whose sum is 64=2664=26.
+Test case 22: The array is already good.
+
+
+
+Author:
+5★prasant21
+
+
+Editorial:
+https://discuss.codechef.com/problems/POWSUM
+
+
+Tags:
+
+               
+                 easy, jan222, prasant21
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1906
+
+
+Date Added:
+6-01-2022
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+
