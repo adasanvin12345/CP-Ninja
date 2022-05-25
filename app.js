@@ -442,7 +442,10 @@ app.get('/blogs/:id', (req, res) => {
         }
         // console.log(statement)
         statement = statement.split('Sample Input')
-        subtasks = statement[0].split('\n')
+        subtasks = statement[0]
+        subtasks = format_contraints(subtasks)
+        subtasks = subtasks.split('\n')
+        subtasks = format_contraints2(subtasks)
         // console.log(subtasks)
         statement = statement[1]
         if (statement === undefined) {
