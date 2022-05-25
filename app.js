@@ -24,10 +24,24 @@ let idf = fs.readFileSync(__dirname + '/constants/idf.txt', {
   encoding: 'utf-8',
 })
 idf = idf.split('\n')
+for (let i = 0; i < idf.length; i++) {
+  idf[i] = parseFloat(idf[i])
+}
 let tfidf = fs.readFileSync(__dirname + '/constants/tfidf.txt', {
   encoding: 'utf-8',
 })
 tfidf = tfidf.split('\n')
+let tfidf2 = []
+for (let i = 0; i < 1450; i++) {
+  let row_tfidf = []
+  for (let j = 0; j < final_kw.length; j++) {
+    let cur = parseFloat(tfidf[i * final_kw.length + j])
+    // tfidf.shift()
+    row_tfidf.push(cur)
+  }
+  tfidf2.push(row_tfidf)
+}
+tfidf = tfidf2
 let ps_titles = fs.readFileSync(__dirname + '/dataset/problem_titles.txt', {
   encoding: 'utf-8',
 })
@@ -173,29 +187,26 @@ app.get('/blogs', (req, res) => {
 })
 
 function cleaner(pss) {
-  let punctuationless = pss.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+  let punctuationless = pss.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ' ')
   pss = punctuationless.replace(/\s{2,}/g, ' ')
-  pss = pss.replace(/\d+/g, '')
+  pss = pss.replace(/\d+/g, ' ')
   pss = pss.replace(/\s+/g, ' ').trim()
   pss = pss.replace(',', ' ')
-  pss = pss.replace(/[^\w\s]/g, '').toLowerCase()
+  pss = pss.replace(/[^\w\s]/g, ' ').toLowerCase()
   return pss
 }
 
 function return_query_tfidf(q) {
   q = cleaner(q)
   // q =
-  const query_keywords = keyword_extractor.extract(q, {
-    language: 'english',
-    remove_digits: true,
-    return_changed_case: true,
-    remove_duplicates: false,
-  })
-  for (let j = 0; j < query_keywords.length; j++) {
-    query_keywords[j] = porterStemmer(query_keywords[j])
-    if (dict.search(query_keywords[j])[0] != undefined)
-      query_keywords[j] = dict.search(query_keywords[j])[0].word
-  }
+  let query_keywords = []
+  q = q.split(' ')
+  query_keywords = q
+  // for (let j = 0; j < query_keywords.length; j++) {
+  //   query_keywords[j] = porterStemmer(query_keywords[j])
+  //   if (dict.search(query_keywords[j])[0] != undefined)
+  //     query_keywords[j] = dict.search(query_keywords[j])[0].word
+  // }
   console.log(query_keywords)
   query_tf = []
   for (let j = 0; j < final_kw.length; j++) {
@@ -224,30 +235,34 @@ function calc_similarity(a, b) {
     sum1 += parseFloat(a[i] * a[i])
     sum2 += parseFloat(b[i] * b[i])
   }
-  sum3 = Math.sqrt(sum1 * sum2)
+  // console.log(sum1)
+  sum1 = Math.sqrt(sum1)
+  sum2 = Math.sqrt(sum2)
+  sum3 = sum1 * sum2
   if (sum3 == 0) return 0
-  return parseFloat(sum / sum3)
+  return sum / sum3
 }
 function top10(q) {
   query_tfidf = return_query_tfidf(q)
-
+  // console.log(query_tfidf)
+  console.log(1450 * final_kw.length)
+  console.log(idf.length)
   all_blogs = []
+  console.log(tfidf[1449])
   for (let i = 0; i < 1450; i++) {
-    cur_tfidf = []
-    let sum = 0
-    for (let j = i * final_kw.length; j < (i + 1) * final_kw.length; j++) {
-      cur_tfidf.push(parseFloat(tfidf[j]))
-      sum += parseFloat(tfidf[j])
-    }
     // console.log(sum)
+    let cur_tfidf = tfidf[i]
     similarity_value = calc_similarity(query_tfidf, cur_tfidf)
+    // console.log(similarity_value, i)
     all_blogs.push([similarity_value, i])
   }
   all_blogs.sort((a, b) => (a[0] > b[0] ? -1 : 1))
   top10_blogs = []
   for (let i = 0; i < 15; i++) {
     top10_blogs.push(all_blogs[i][1] + 1)
+    console.log(all_blogs[i])
   }
+  console.log(top10_blogs)
   return top10_blogs
 }
 
@@ -297,16 +312,23 @@ app.post('/blogs', (req, res) => {
             console.log(err)
           })
       }
-    }, 2000)
+    }, 0)
   } else {
     let query_cleaned = req.body.query
     query_cleaned = cleaner(query_cleaned)
     top10_blogs = top10(query_cleaned)
     top10_blogs_copy = top10_blogs
-
+    // console.log(top10_blogs)
     all_blogs = []
-    Blog.find({ index_of_ps: { $in: top10_blogs } })
-      .sort({ sort_by: -1 })
+    Blog.aggregate([
+      { $match: { index_of_ps: { $in: top10_blogs } } },
+      {
+        $addFields: {
+          __top10_blogs: { $indexOfArray: [top10_blogs, '$index_of_ps'] },
+        },
+      },
+      { $sort: { __top10_blogs: 1 } },
+    ])
       .then((blog) => {
         res.render('index', {
           blogs: blog,
@@ -317,6 +339,26 @@ app.post('/blogs', (req, res) => {
       .catch((err) => {
         console.log(err)
       })
+    // Blog.find({ index_of_ps: { $in: top10_blogs } })
+    //   .lean()
+    //   .select('_id')
+    //   .then((result) => {
+    //     console.log(result)
+    //   })
+    // let blogs = []
+    // for (let i = 0; i < top10_blogs.length; i++) {
+    //   let ind = top10_blogs[i]
+    //   Blog.findOne({ index_of_ps: ind }).then((blog) => {
+    //     // res.render('index', {
+    //     //   blogs: blog,
+    //     //   title: 'Questions',
+    //     //   query: req.body.query,
+    //     // })
+    //     console.log(blog._id)
+    //     blogs.push(blogs._id)
+    //   })
+    // }
+    // console.log(blogs)
   }
 })
 
@@ -330,7 +372,7 @@ function format_contraints(constraints) {
   return constraints
 }
 function format_contraints2(constraints) {
-  console.log(constraints)
+  // console.log(constraints)
   for (let i = 0; i < constraints.length; i++) {
     if (constraints[i][0] === ',') constraints[i] = constraints[i].substr(1)
     if (constraints[i] != '\r' && constraints[i].length > 2) {
