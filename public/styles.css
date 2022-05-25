@@ -457,20 +457,22 @@ h3 {
     flex-direction: column;
     /* justify-content: center; */
     /* align-items: center; */
-    padding: 10px;
+    padding: 3px;
+    margin-left: 0px;
     padding-top: 0;
   }
+
   .content_left {
-    padding: 10px;
+    padding: 15px;
     padding-right: 0px;
-    padding-left: 10px;
+    padding-left: 15px;
     border-right: 0px solid white;
     font-size: medium;
     /* width: auto; */
   }
   .content_right {
-    padding: 10px;
-    padding-left: 10px;
+    padding: 15px;
+    padding-left: 15px;
     padding-top: 10;
     font-size: medium;
   }
@@ -478,25 +480,15 @@ h3 {
 @media only screen and (max-width: 400px) {
   /* For tablets: */
   .content_left {
+    padding-left: 8px;
     font-size: x-small;
     /* width: auto; */
   }
   .content_right {
-    font-size: x-small;
-  }
-  .content_left {
-    padding: 10px;
-    padding-right: 0px;
-    padding-left: 10px;
-    border-right: 0px solid white;
-    font-size: medium;
-    /* width: auto; */
-  }
-  .content_right {
-    padding: 10px;
-    padding-left: 00px;
+    /* padding: 3px; */
+    padding-left: 8px;
     padding-top: 10;
-    font-size: medium;
+    font-size: x-small;
   }
 }
 
