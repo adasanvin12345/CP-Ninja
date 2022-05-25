@@ -234,9 +234,9 @@ h3 {
   text-transform: capitalize;
   margin-bottom: 8px;
 }
-/* .content {
+.content {
   margin-left: 30px;
-} */
+}
 .blogs {
   padding-left: 35px;
   display: flex;
@@ -272,6 +272,7 @@ h3 {
 
 .single {
   width: 80%;
+  min-width: 600px;
   transition: all 0.5s ease;
   padding: 2px;
 }
@@ -287,8 +288,14 @@ h3 {
 @media only screen and (max-width: 750px) {
   /* For tablets: */
   .blogs {
-    padding-left: 35px;
+    padding-left: 15px;
     flex-direction: column;
+  }
+  .blogs a {
+    border-left: 4px solid white;
+    font-size: small;
+    /* margin: 20; */
+    width: 100%;
   }
   .blogs_left {
     flex: 1;
@@ -303,19 +310,19 @@ h3 {
     margin-bottom: 5px;
   }
   .single {
-    width: 100%;
+    width: 90%;
   }
 }
 @media only screen and (max-width: 500px) {
   /* For mobile phones: */
   .blogs {
-    padding-left: 20px;
+    padding-left: 10px;
     display: flex;
   }
   .blogs a {
     border-left: 3px solid white;
-    font-size: small;
-    margin: 20;
+    font-size: x-small;
+    /* margin: 20; */
     width: 100%;
   }
 }
@@ -343,6 +350,7 @@ h3 {
 @media only screen and (max-width: 350px) {
   /* For mobile phones: */
 }
+/* details styles */
 /* details styles */
 .carding {
   display: flex;
@@ -467,7 +475,7 @@ h3 {
     font-size: medium;
   }
 }
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 400px) {
   /* For tablets: */
   .content_left {
     font-size: x-small;
@@ -477,10 +485,16 @@ h3 {
     font-size: x-small;
   }
 }
+
 /* create styles */
 .create-blog form {
   width: 600px;
+  min-width: 200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .create-blog input,
 .create-blog textarea {
@@ -495,6 +509,22 @@ h3 {
 }
 textarea {
   height: 120px;
+}
+@media only screen and (max-width: 750px) {
+  /* For tablets: */
+  .create-blog form {
+    width: 400px;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 500px) {
+  /* For mobile phones: */
+  .create-blog form {
+    width: 280px;
+  }
+}
+@media only screen and (max-width: 350px) {
+  /* For mobile phones: */
 }
 .create-blog button {
   margin-top: 20px;
@@ -668,7 +698,10 @@ textarea {
     width: 300px;
     padding: 10px;
   }
-
+  .create-blog {
+    width: 300px;
+    /* padding: 10px; */
+  }
   .feedback_form {
     padding-left: 30px;
   }
@@ -755,7 +788,7 @@ textarea {
   }
   .feedbacks {
     padding: 00px;
-    margin: 00px;
+    /* margin: 00px; */
     width: fit-content;
     min-width: 400px;
   }
