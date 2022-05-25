@@ -484,6 +484,20 @@ h3 {
   .content_right {
     font-size: x-small;
   }
+  .content_left {
+    padding: 10px;
+    padding-right: 0px;
+    padding-left: 10px;
+    border-right: 0px solid white;
+    font-size: medium;
+    /* width: auto; */
+  }
+  .content_right {
+    padding: 10px;
+    padding-left: 00px;
+    padding-top: 10;
+    font-size: medium;
+  }
 }
 
 /* create styles */
