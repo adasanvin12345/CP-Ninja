@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 body {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0;
   padding: 0;
   /* padding: 0 20px; */
   font-family: 'Noto Serif', serif;
-  max-width: 1200px;
+  max-width: 1400px;
   background: linear-gradient(rgb(3, 101, 128), rgba(0, 0, 0, 1));
 }
 p,
@@ -38,11 +38,39 @@ nav {
   width: 100%;
   min-width: 400px;
   /* color: black; */
-  background: rgb(0, 15, 19);
+  background: linear-gradient(rgba(0, 0, 0, 1), rgb(2, 58, 72));
   box-shadow: 0 0px 15px rgba(200, 200, 200, 1);
   backdrop-filter: blur(17.1px);
   -webkit-backdrop-filter: blur(17.1px);
   border-bottom: 2px solid white;
+}
+.site-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.in_row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+@media only screen and (max-width: 350px) {
+  /* For mobile phones: */
+  .site-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .in_row a h1 {
+    font-size: 1.5rem;
+  }
+}
+.ninja {
+  height: 50px;
+  width: fit-content;
+  border-radius: 25px;
 }
 nav ul {
   display: flex;
@@ -174,7 +202,7 @@ nav a {
 }
 nav li:hover {
   background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0px 0px 35px rgba(200, 200, 200, 1);
+  box-shadow: 0px 0px 25px rgba(255, 255, 255, 1);
   /* box-shadow: 0px 0px 25px black; */
 }
 nav li:focus {
@@ -195,7 +223,7 @@ footer {
   min-width: 400px;
   color: white;
   align-items: center;
-  background: rgb(0, 15, 19);
+  background: linear-gradient(rgb(1, 27, 34), rgba(0, 0, 0, 1));
   box-shadow: 0 0px 15px rgba(200, 200, 200, 1);
   backdrop-filter: blur(17.1px);
   -webkit-backdrop-filter: blur(17.1px);
@@ -455,6 +483,8 @@ h3 {
   }
   .content {
     flex-direction: column;
+    width: fit-content;
+    min-width: 400px;
     /* justify-content: center; */
     /* align-items: center; */
     padding: 3px;
@@ -468,6 +498,7 @@ h3 {
     padding-left: 15px;
     border-right: 0px solid white;
     font-size: medium;
+    width: fit-content;
     /* width: auto; */
   }
   .content_right {
@@ -477,12 +508,16 @@ h3 {
     font-size: medium;
   }
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
   /* For tablets: */
+  .content {
+    /* width: min-content; */
+    min-width: 300px;
+  }
   .content_left {
     padding-left: 8px;
     font-size: x-small;
-    /* width: auto; */
+    /* width: ; */
   }
   .content_right {
     /* padding: 3px; */

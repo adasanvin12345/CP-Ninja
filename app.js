@@ -187,12 +187,12 @@ app.get('/blogs', (req, res) => {
 })
 
 function cleaner(pss) {
-  let punctuationless = pss.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ' ')
+  let punctuationless = pss.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
   pss = punctuationless.replace(/\s{2,}/g, ' ')
-  pss = pss.replace(/\d+/g, ' ')
+  pss = pss.replace(/\d+/g, '')
   pss = pss.replace(/\s+/g, ' ').trim()
   pss = pss.replace(',', ' ')
-  pss = pss.replace(/[^\w\s]/g, ' ').toLowerCase()
+  pss = pss.replace(/[^\w\s]/g, '').toLowerCase()
   return pss
 }
 
@@ -245,8 +245,8 @@ function calc_similarity(a, b) {
 function top10(q) {
   query_tfidf = return_query_tfidf(q)
   // console.log(query_tfidf)
-  console.log(1450 * final_kw.length)
-  console.log(idf.length)
+  // console.log(1450 * final_kw.length)
+  // console.log(idf.length)
   all_blogs = []
   console.log(tfidf[1449])
   for (let i = 0; i < 1450; i++) {
@@ -260,9 +260,9 @@ function top10(q) {
   top10_blogs = []
   for (let i = 0; i < 15; i++) {
     top10_blogs.push(all_blogs[i][1] + 1)
-    console.log(all_blogs[i])
+    // console.log(all_blogs[i])
   }
-  console.log(top10_blogs)
+  // console.log(top10_blogs)
   return top10_blogs
 }
 
