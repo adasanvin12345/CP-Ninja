@@ -265,7 +265,7 @@ function top10(q) {
   // console.log(top10_blogs)
   return top10_blogs
 }
-
+let cur_query = ''
 app.post('/blogs', (req, res) => {
   if (req.body.category != undefined) {
     sort_by = req.body.category
@@ -312,7 +312,7 @@ app.post('/blogs', (req, res) => {
             console.log(err)
           })
       }
-    }, 0)
+    }, 500)
   } else {
     let query_cleaned = req.body.query
     query_cleaned = cleaner(query_cleaned)

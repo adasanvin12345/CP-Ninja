@@ -5,24 +5,25 @@
 
   <body>
     <%- include("./partials/nav.ejs") %>
-
-    <div class="create-blog content">
-      <form action="/blogs" class="form_class" method="POST">
-        <!-- <form action="/blogs" method="POST"></form> -->
-        <!-- <label for="title">Blog title:</label>
+    <div class="create_blog_container">
+      <div class="create-blog">
+        <form action="/blogs" class="form_class" method="POST">
+          <!-- <form action="/blogs" method="POST"></form> -->
+          <!-- <label for="title">Blog title:</label>
       <input type="text" id="title" name="title" required> -->
-        <label class="text-white" for="query">Search a Question:</label>
-        <input
-          class="extend_width"
-          type="text"
-          id="query"
-          name="query"
-          required
-        />
-        <!-- <label for="body">Blog body:</label>
+          <label class="text-white" for="query">Search a Question:</label>
+          <input
+            class="extend_width"
+            type="text"
+            id="query"
+            name="query"
+            required
+          />
+          <!-- <label for="body">Blog body:</label>
       <textarea id="body" name="body" required></textarea> -->
-        <button id="query_button" onclick="loading()">Submit</button>
-      </form>
+          <button id="query_button" onclick="loading()">Submit</button>
+        </form>
+      </div>
     </div>
 
     <%- include("./partials/footer.ejs") %>
