@@ -271,8 +271,8 @@ app.get('/', (req, res) => {
 })
 
 // question routes
-app.get('/questions/create', (req, res) => {
-  res.render('create', { title: 'Search a question' })
+app.get('/questions/search', (req, res) => {
+  res.render('search', { title: 'Search a question' })
 })
 
 app.get('/questions', (req, res) => {
