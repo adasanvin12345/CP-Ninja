@@ -140,14 +140,14 @@ app.use((req, res, next) => {
 //       console.log(err)
 //     })
 // }
-
 top10_blogs_copy = []
+
 // routes
 
 app.get('/', (req, res) => {
   // res.redirect('/blogs')
-  console.log('index reached')
-  res.redirect('/blogs')
+  console.log('search reached')
+  res.redirect('/create')
 })
 
 app.get('/feedbacks', (req, res) => {
