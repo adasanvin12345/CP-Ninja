@@ -267,22 +267,23 @@ h3 {
 .content {
   margin-left: 30px;
 }
-.blogs {
+.questions {
   padding-left: 35px;
   display: flex;
 }
-.blogs_left {
-  width: max-content;
+.questions_left {
+  width: 700px;
   border-right: 2px solid white;
+  padding-right: 10px;
 }
-.blogs_right {
+.questions_right {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   margin-left: 20px;
 }
-.blogs_right_content {
+.questions_right_content {
   margin-top: 60px;
   height: 10%;
   display: flex;
@@ -292,15 +293,16 @@ h3 {
   margin-left: 10px;
 }
 /* index styles */
-.blogs a {
+.questions a {
   display: block;
   margin: 30px 0;
   padding-left: 20px;
   border-left: 6px solid white;
   transition: all 0.3s ease;
+  margin-right: 10px;
 }
 /* create styles */
-.create_blog_container {
+.create_question_container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -309,7 +311,7 @@ h3 {
   margin-bottom: 20px;
   padding: 10px;
 }
-.create-blog form {
+.create-question form {
   width: 600px;
   min-width: 300px;
   margin: 0 auto;
@@ -324,14 +326,14 @@ h3 {
   align-items: center;
   justify-content: space-between;
 }
-.create-blog input,
-.create-blog textarea {
+.create-question input,
+.create-question textarea {
   /* display: block; */
   width: 100%;
   margin: 10px 0;
   padding: 8px;
 }
-.create-blog label {
+.create-question label {
   display: block;
   margin-top: 24px;
 }
@@ -343,14 +345,14 @@ textarea {
 }
 @media only screen and (max-width: 750px) {
   /* For tablets: */
-  .create-blog form {
+  .create-question form {
     width: 400px;
     margin: 0 auto;
   }
 }
 @media only screen and (max-width: 500px) {
   /* For mobile phones: */
-  .create-blog form {
+  .create-question form {
     width: 300px;
     margin: 0 auto;
   }
@@ -361,7 +363,7 @@ textarea {
 @media only screen and (max-width: 350px) {
   /* For mobile phones: */
 }
-.create-blog button {
+.create-question button {
   margin-top: 20px;
   /* background-image: url(../images/arrow.png); */
   background-color: Transparent;
@@ -377,11 +379,11 @@ textarea {
   border-radius: 50%;
   transition: all 0.3s ease;
 }
-.create-blog button:hover {
+.create-question button:hover {
   background-color: black;
   box-shadow: 0 0px 15px rgba(200, 200, 200, 1);
 }
-.create-blog button:focus {
+.create-question button:focus {
   background-color: black;
   box-shadow: 0 0px 15px rgba(200, 200, 200, 1);
 }
@@ -403,25 +405,25 @@ textarea {
 
 @media only screen and (max-width: 850px) {
   /* For tablets: */
-  .blogs {
-    padding-left: 15px;
+  .questions {
+    padding-left: 40px;
     flex-direction: column;
   }
-  .blogs a {
+  .questions a {
     border-left: 4px solid white;
     font-size: medium;
     /* margin: 20;*/
     width: 100%;
   }
-  .blogs_left {
+  .questions_left {
     width: max-content;
     border-right: 0px solid white;
     border-bottom: 1px solid white;
   }
-  .blogs_right {
+  .questions_right {
     margin-left: 0px;
   }
-  .blogs_right_content {
+  .questions_right_content {
     margin-top: 20px;
     margin-bottom: 5px;
   }
@@ -431,11 +433,11 @@ textarea {
 }
 @media only screen and (max-width: 500px) {
   /* For mobile phones: */
-  .blogs {
+  .questions {
     padding-left: 10px;
     display: flex;
   }
-  .blogs a {
+  .questions a {
     border-left: 3px solid white;
     font-size: x-small;
     /* margin: 20; */
@@ -444,12 +446,12 @@ textarea {
 }
 @media only screen and (max-width: 400px) {
   /* For mobile phones: */
-  .blogs {
+  .questions {
     padding-left: 5px;
     display: flex;
   }
 }
-.blogs_header {
+.questions_header {
   display: flex;
   margin-right: 15px;
   margin-top: 5px;
@@ -554,6 +556,10 @@ textarea {
 .give_margin {
   padding-top: 10px;
   padding-bottom: 5px;
+}
+.give_margin2 {
+  padding-top: 10px;
+  padding-bottom: 15px;
 }
 @media only screen and (max-width: 750px) {
   /* For tablets: */
@@ -759,7 +765,7 @@ textarea {
     width: 300px;
     padding: 10px;
   }
-  .create-blog {
+  .create-question {
     width: 300px;
     /* padding: 10px; */
   }

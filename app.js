@@ -260,37 +260,41 @@ app.use((req, res, next) => {
 //       console.log(err)
 //     })
 // }
-top10_blogs_copy = []
+top10_questions_copy = []
 
 // routes
 
 app.get('/', (req, res) => {
   // res.redirect('/blogs')
   console.log('search reached')
-  res.redirect('/blogs/create')
+  res.redirect('/questions')
 })
 
-// blog routes
-app.get('/blogs/create', (req, res) => {
+// question routes
+app.get('/questions/create', (req, res) => {
   res.render('create', { title: 'Search a question' })
 })
 
-app.get('/blogs', (req, res) => {
-  top10_blogs_copy = []
-  for (let i = 1; i < 100; i++) {
-    top10_blogs_copy.push(i)
+app.get('/questions', (req, res) => {
+  top10_questions_copy = []
+  for (let i = 1; i < 15; i++) {
+    top10_questions_copy.push(i)
   }
   Blog.find({
     index_of_ps: { $in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] },
   })
     .sort({ createdAt: -1 })
     .then((result) => {
-      res.render('index', { blogs: result, title: 'All Questions', query: '' })
+      res.render('index', {
+        questions: result,
+        title: 'All Questions',
+        query: '',
+      })
     })
     .catch((err) => {
       console.log(err)
     })
-  console.log('/blogs reached')
+  console.log('/questions reached')
 })
 
 function cleaner(pss) {
@@ -351,32 +355,32 @@ function calc_similarity(a, b) {
 
 function top10(q) {
   query_tfidf = return_query_tfidf(q)
-  all_blogs = []
+  all_questions = []
   for (let i = 0; i < 1450; i++) {
     let cur_tfidf = tfidf[i]
     similarity_value = calc_similarity(query_tfidf, cur_tfidf)
-    all_blogs.push([similarity_value, i])
+    all_questions.push([similarity_value, i])
   }
-  all_blogs.sort((a, b) => (a[0] > b[0] ? -1 : 1))
-  top10_blogs = []
+  all_questions.sort((a, b) => (a[0] > b[0] ? -1 : 1))
+  top10_questions = []
   for (let i = 0; i < 15; i++) {
-    top10_blogs.push(all_blogs[i][1] + 1)
+    top10_questions.push(all_questions[i][1] + 1)
   }
-  return top10_blogs
+  return top10_questions
 }
 let cur_query = ''
-app.post('/blogs', (req, res) => {
+app.post('/questions', (req, res) => {
   if (req.body.category != undefined) {
     sort_by = req.body.category
-    all_blogs = []
+    all_questions = []
     setTimeout(() => {
       if (sort_by === 'code') {
-        Blog.find({ index_of_ps: { $in: top10_blogs_copy } })
+        Blog.find({ index_of_ps: { $in: top10_questions_copy } })
           .sort({ code: 1 })
-          .then((blog) => {
+          .then((question) => {
             res.render('index', {
-              blogs: blog,
-              title: 'Questions',
+              questions: question,
+              title: 'Blogs',
               query: req.body.category,
             })
           })
@@ -384,12 +388,12 @@ app.post('/blogs', (req, res) => {
             console.log(err)
           })
       } else if (sort_by === 'diff') {
-        Blog.find({ index_of_ps: { $in: top10_blogs_copy } })
+        Blog.find({ index_of_ps: { $in: top10_questions_copy } })
           .sort({ diff: 1 })
-          .then((blog) => {
+          .then((question) => {
             res.render('index', {
-              blogs: blog,
-              title: 'Questions',
+              questions: question,
+              title: 'Blogs',
               query: req.body.category,
             })
           })
@@ -397,12 +401,12 @@ app.post('/blogs', (req, res) => {
             console.log(err)
           })
       } else {
-        Blog.find({ index_of_ps: { $in: top10_blogs_copy } })
+        Blog.find({ index_of_ps: { $in: top10_questions_copy } })
           .sort({ submissions: 1 })
-          .then((blog) => {
+          .then((question) => {
             res.render('index', {
-              blogs: blog,
-              title: 'Questions',
+              questions: question,
+              title: 'Blogs',
               query: req.body.category,
             })
           })
@@ -414,21 +418,23 @@ app.post('/blogs', (req, res) => {
   } else {
     let query_cleaned = req.body.query
     query_cleaned = cleaner(query_cleaned)
-    top10_blogs = top10(query_cleaned)
-    top10_blogs_copy = top10_blogs
-    all_blogs = []
+    top10_questions = top10(query_cleaned)
+    top10_questions_copy = top10_questions
+    all_questions = []
     Blog.aggregate([
-      { $match: { index_of_ps: { $in: top10_blogs } } },
+      { $match: { index_of_ps: { $in: top10_questions } } },
       {
         $addFields: {
-          __top10_blogs: { $indexOfArray: [top10_blogs, '$index_of_ps'] },
+          __top10_questions: {
+            $indexOfArray: [top10_questions, '$index_of_ps'],
+          },
         },
       },
-      { $sort: { __top10_blogs: 1 } },
+      { $sort: { __top10_questions: 1 } },
     ])
-      .then((blog) => {
+      .then((question) => {
         res.render('index', {
-          blogs: blog,
+          questions: question,
           title: 'Questions',
           query: req.body.query,
         })
@@ -441,6 +447,7 @@ app.post('/blogs', (req, res) => {
 
 function format_contraints(constraints) {
   constraints = constraints.split(' ')
+
   for (let i = 0; i < constraints.length; i++) {
     if (constraints[i] === '\\leq') constraints[i] = '<='
     if (constraints[i] === '\\geq') constraints[i] = '>='
@@ -489,7 +496,7 @@ app.get('/feedbacks', (req, res) => {
   console.log('/feedbacks reached')
 })
 
-app.get('/blogs/:id', (req, res) => {
+app.get('/questions/:id', (req, res) => {
   const id = req.params.id
   Blog.findById(id)
     .then((result) => {
@@ -597,7 +604,7 @@ app.get('/blogs/:id', (req, res) => {
       if (output[0] === ':\r') output.shift()
       subtask_len = subtasks.length
       res.render('details', {
-        blog: result,
+        question: result,
         title: 'Problem Statement',
         details: {
           ps,

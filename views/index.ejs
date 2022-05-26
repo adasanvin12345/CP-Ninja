@@ -5,9 +5,9 @@
   <body>
     <%- include("./partials/nav.ejs") %>
 
-    <div class="blogs">
-      <div class="blogs_left">
-        <div class="blogs_header">
+    <div class="questions">
+      <div class="questions_left">
+        <div class="questions_header">
           <% if(query != undefined && query.length>0) {%>
           <p>
             <strong>Search Results based on the query ></strong> <%= query%>
@@ -16,23 +16,23 @@
           <h3>All Questions</h3>
           <%}%>
         </div>
-        <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
-        <a class="single" href="/blogs/<%= blog._id %>">
+        <% if (questions.length > 0) { %> <% questions.forEach(question => { %>
+        <a class="single" href="/questions/<%= question._id %>">
           <h3 class="title">
-            <strong><%= blog.title %></strong> [ <%=blog.code%> ] [Difficulty :
-            <%= blog.diff%>]
+            <strong><%= question.title %></strong> [ <%=question.code%> ]
+            [Difficulty : <%= question.diff%>]
           </h3>
-          <p class="snippet"><%= blog.statement.slice(0,50)+"..." %></p>
+          <p class="snippet"><%= question.statement.slice(0,50)+"..." %></p>
         </a>
         <% }) %> <% } else { %>
-        <p>There are no blogs to display...</p>
+        <p>There are no questions to display...</p>
         <% } %>
       </div>
-      <div class="blogs_right">
-        <div class="blogs_right_content">
+      <div class="questions_right">
+        <div class="questions_right_content">
           <h3>SORT BY:</h3>
-          <form action="/blogs" method="POST" class="form_class">
-            <label class="text-white give_margin" for="category"
+          <form action="/questions" method="POST" class="form_class">
+            <label class="text-white give_margin2" for="category"
               >Write a category( 'diff' | 'code' | 'submissions' ) :</label
             >
             <input type="text" id="category" name="category" required />
