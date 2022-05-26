@@ -147,7 +147,7 @@ top10_blogs_copy = []
 app.get('/', (req, res) => {
   // res.redirect('/blogs')
   console.log('search reached')
-  res.redirect('/create')
+  res.redirect('/blogs/create')
 })
 
 app.get('/feedbacks', (req, res) => {
