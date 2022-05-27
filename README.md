@@ -1,5 +1,5 @@
 # CP-Ninja
-CP-Ninja is a Web based Search Engine that searches for the DSA/CP problems stored in the database and outputs most relevant results obtained.It takes an input query from the user, finds the best results using an algorithm called TF-IDF algorithm and displays the results. Tech stacks used int the project are HTML, CSS, JavaScript, Nodejs, ExpressJs and MongoDb.
+CP-Ninja is a Web based Search Engine that searches for the DSA/CP problems stored in the database and outputs most relevant results obtained.It takes an input query from the user, finds the best results using an algorithm called TF-IDF algorithm and displays the results. Tech stacks used in the project are HTML, CSS, JavaScript, Nodejs, ExpressJs and MongoDb.
 
 Link to the website : https://cp-ninja.herokuapp.com/questions
 
