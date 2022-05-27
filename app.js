@@ -561,6 +561,7 @@ app.get('/questions/:id', (req, res) => {
       sample_input = statement[0].split('\n')
       statement = statement[1]
       sample_output = []
+      explanation = []
       if ((statement.match('Explanation') || []).length != 0) {
         statement = statement.split('Explanation')
         sample_output = statement[0].split('\n')
@@ -568,10 +569,16 @@ app.get('/questions/:id', (req, res) => {
         if (statement === undefined) {
           res.render('error', { title: 'PAGE NOT FOUND' })
         }
+        statement = statement.split('Author')
+        explanation = statement[0].split('\n')
+      } else {
+        statement = statement.split('Author')
+        sample_output = statement[0].split('\n')
+        statement = statement[1]
+        if (statement === undefined) {
+          res.render('error', { title: 'PAGE NOT FOUND' })
+        }
       }
-
-      statement = statement.split('Author')
-      explanation = statement[0].split('\n')
 
       statement = ps
       if ((statement.match('Input Format') || []).length != 0) {
