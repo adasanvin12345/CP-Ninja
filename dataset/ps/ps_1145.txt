@@ -1,0 +1,111 @@
+Read problem statements in Hindi, Bengali, Mandarin Chinese, Russian, and Vietnamese as well.
+Chef Aditi keeps changing the flavours of her dishes and she wants to analyse feedback from her customers in order to improve her performance. The customers visiting Aditi's restaurant can rate the food online and Aditi knows an aggregated rating for each day. As she is busy cooking, you should perform the data analysis.
+You are given a sequence A1,A2,…,ANA1,A2,…,AN of distinct integers denoting the customers' feedback during NN days. You should process QQ queries. In each query, you are given two integers LL and RR. Consider any contiguous subsequence Ap,Ap+1,…,AqAp,Ap+1,…,Aq, where L≤p<q≤RL≤p<q≤R; let's call it a maximal increasing subsequence if the following conditions hold:
+
+Ap<Ap+1…<AqAp<Ap+1…<Aq
+if p>Lp>L, then Ap<Ap−1Ap<Ap−1
+if q<Rq<R, then Aq>Aq+1Aq>Aq+1
+
+Similarly, let's define a maximal decreasing subsequence. You should find out if the number of maximal increasing subsequences is equal to the number of maximal decreasing subsequences (with L≤p<q≤RL≤p<q≤R).
+For example, if A=(10,20,30,5)A=(10,20,30,5), we can see that the only maximal increasing subsequence of this sequence (for L=1L=1 and R=NR=N) is (10,20,30)(10,20,30), since (10,20)(10,20) does not satisfy the third condition and (20,30)(20,30) does not satisfy the second condition, and there is only one maximal decreasing subsequence (30,5)(30,5).
+Input
+
+The first line of the input contains two space-separated integers NN and QQ.
+The second line contains NN space-separated integers A1,A2,…,ANA1,A2,…,AN.
+QQ lines follow. Each of these lines contains two space-separated integers LL and RR describing a query.
+
+Output
+For each query, print a single line containing the string "YES" if the number of maximal increasing contiguous subsequences is equal to the number of maximal decreasing contiguous subsequences or "NO" otherwise (without quotes).
+Constraints
+
+2≤N≤1052≤N≤105
+1≤Q≤1051≤Q≤105
+1≤Ai≤1091≤Ai≤109 for each valid ii
+1≤L<R≤N1≤L<R≤N
+A1,A2,…,ANA1,A2,…,AN are pairwise distinct
+
+Subtasks
+Subtasks #1 (20 points): Q≤50Q≤50
+Subtasks #2 (80 points): original constraints
+
+                        Sample Input 1
+                        
+
+
+
+
+
+4 3
+1 3 2 4
+1 4
+2 3
+2 4
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+NO
+NO
+YES
+
+
+Explanation
+For the first query, there are two maximal increasing subsequences (1,3)(1,3) and (2,4)(2,4), but only one maximal decreasing subsequence (3,2)(3,2).
+
+
+
+Author:
+4★sahi1422
+
+
+Editorial:
+https://discuss.codechef.com/problems/ISBIAS
+
+
+Tags:
+
+               
+                 1D Arrays, ad-hoc, Observation
+                 
+                     
+                     Data Structures, Arrays, Algorithms, Constructive
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1837
+
+
+Date Added:
+19-11-2019
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

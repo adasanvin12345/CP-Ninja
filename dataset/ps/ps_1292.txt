@@ -1,0 +1,93 @@
+Read problems statements Hindi , Vietnamese , Mandarin Chinese , Russian and Bengali as well.
+This is an interactive problem. 
+Chef and Cheffa are playing a game. Chef has a sequence of positive integers a1,a2,…,aNa1,a2,…,aN; Cheffa should find the values of all elements of this sequence. Cheffa may ask Chef at most NN questions. In each question, Cheffa tells Chef 3 distinct indices ii, jj and kk, and Chef responds with an integer ai⊕aj⊕akai⊕aj⊕ak (⊕⊕ denotes bitwise XOR).
+Also, Chef has an additional condition: for each index xx, xx may appear in all questions in total at most 33 times.
+You should play the game for Cheffa; the grader plays for Chef. Find the sequence aa!
+Interaction
+
+First, you should read a line containing a single integer TT denoting the number of test cases.
+For each test case, you should start by reading a line containing a single integer NN.
+To ask a question, you should print a line containing four space-separated integers 11, ii, jj and kk (1≤i,j,k≤N1≤i,j,k≤N; i≠ji≠j, j≠kj≠k, k≠ik≠i). Then, you must read a line containing a single integer: the answer to your question or −1−1 if the question is invalid or you asked more than NN questions.
+To finish solving a test case, you should print a single line containing N+1N+1 space-separated integers 22, a1,a2,…,aNa1,a2,…,aN. Then, you must read a line containing a single integer: 11 if your output is correct or −1−1 if it is incorrect.
+
+Note that when you receive an answer −1−1, you should immediately terminate your program to receive a Wrong Answer verdict; otherwise, you may receive any verdict. Don't forget to flush the output after printing each line!
+Constraints
+
+1≤T≤201≤T≤20
+8≤N≤5⋅1048≤N≤5⋅104
+1≤ai≤2301≤ai≤230 for each valid ii
+the sum of NN over all test cases does not exceed 2⋅1052⋅105
+
+Subtasks
+Subtask #1 (10 points): i=ji=j, j=kj=k or k=ik=i is allowed in each question
+Subtask #2 (25 points): ai+1=ai+1ai+1=ai+1 for each valid ii
+Subtask #3 (65 points): original constraints
+Example
+You                 Grader
+                    1
+                    4
+1 1 1 1
+                    4
+1 2 2 2
+                    9
+1 3 3 3
+                    10
+1 4 4 4
+                    11
+2 4 9 10 11
+                    1
+
+Explanation
+We use N=4N=4 here for clarity; N≥8N≥8 in real test data. Note that this example would be invalid for subtasks 2 and 3.
+
+
+
+Author:
+6★huzaifa242
+
+
+Editorial:
+https://discuss.codechef.com/problems/INTXOR
+
+
+Tags:
+
+               
+                 Interactive Problems, Bit Manipulation
+                 
+                     
+                     Special, Mathematics
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1930
+
+
+Date Added:
+22-11-2018
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SCM guile, PERL6, ERL, CLPS, PRLG, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

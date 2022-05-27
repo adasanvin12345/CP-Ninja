@@ -1,0 +1,108 @@
+Chef has two strings AA and BB consisting of lowercase alphabets, each of length NN. Help Chef in finding the number of indices ii (1≤i≤N)(1≤i≤N) such that A[i…N]<B[i…N]A[i…N]<B[i…N].
+
+S[i…N]S[i…N] denotes the suffix of string SS starting at index ii, i.e. SiSi+1SiSi+1 …… SNSN. 
+String S<S< String TT denotes that SS is lexicographically smaller than TT. If two strings SS and TT have the same length NN, we say that SS is lexicographically smaller than TT if there exists an index i(1≤i≤N)i(1≤i≤N) such that S1=T1,S1=T1, S2=T2,…,Si−1=Ti−1S2=T2,…,Si−1=Ti−1 and Si<TiSi<Ti. For example, "abcabc" is lexicographically smaller than "acdacd", "abeabe", but not smaller than "abcabc", "aacaac".
+
+Input Format
+
+The first line contains TT denoting the number of test cases. Then the test cases follow.
+The first line of each test case contains NN, denoting the length of the strings AA and BB.
+The second line of each test case contains the string AA.
+The third line of each test case contains the string BB.
+
+Output Format
+For each test case, print a single line containing one integer -  the number of indices ii such that A[i…N]<B[i…N]A[i…N]<B[i…N].
+Constraints
+
+1≤T≤1051≤T≤105
+1≤N≤1061≤N≤106
+The sum of NN over all test cases does not exceed 106106
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+2
+2
+ab
+bb
+3
+aaa
+aab
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+1
+3
+
+
+Explanation
+Test Case 11: 
+
+For i=1i=1, A[1…2]=A[1…2]= "abab", B[1…2]=B[1…2]= "bbbb" and lexicographically, "abab" << "bbbb".
+For i=2i=2, A[2…2]=A[2…2]= "bb", B[2…2]=B[2…2]= "bb" and lexicographically, "bb" == "bb".
+
+Test Case 22: For each i∈{1,2,3}i∈{1,2,3}, A[i…3]<B[i…3]A[i…3]<B[i…3].
+
+
+
+Author:
+5★mananbordia
+
+
+Editorial:
+https://discuss.codechef.com/problems/STRCOMPARE
+
+
+Tags:
+
+               
+                 String, ad-hoc
+                 
+                     
+                     Data Structures, Algorithms, Constructive
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1756
+
+
+Date Added:
+20-11-2021
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

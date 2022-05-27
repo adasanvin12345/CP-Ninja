@@ -1,0 +1,124 @@
+Read problems statements in Mandarin Chinese, Russian, Vietnamese, and Bengali as well.
+You are given a positive integer KK and a sequence A1,A2,…,ANA1,A2,…,AN. Initially, each element of this sequence is 00 or 11; your goal is to make all elements equal to 00.
+In order to do that, you may perform the following operation any number of times:
+
+Choose a subarray (a contiguous subsequence) with length KK, i.e. choose two indices LL and RR such that 1≤L≤R≤N1≤L≤R≤N and R−L+1=KR−L+1=K.
+Choose one element of that subarray and change it to 00, i.e. choose an index PP such that L≤P≤RL≤P≤R and change APAP to 00.
+The cost of this operation is the sum of this subarray AL+AL+1+…+ARAL+AL+1+…+AR before APAP is changed.
+
+Find the minimum total cost (sum of costs of individual operations) of making all elements of AA equal to 00.
+Input
+
+The first line of the input contains a single integer TT denoting the number of test cases. The description of TT test cases follows.
+The first line of each test case contains two space-separated integers NN and KK.
+The second line contains NN space-separated integers A1,A2,…,ANA1,A2,…,AN.
+
+Output
+For each test case, print a single line containing one integer ― the minimum cost of turning all elements of AA into zeros. 
+Constraints
+
+1≤T≤2001≤T≤200
+1≤K≤N≤2⋅1051≤K≤N≤2⋅105
+0≤Ai≤10≤Ai≤1 for each valid ii
+the sum of NN over all test cases does not exceed 4⋅1054⋅105
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+3
+5 3
+1 0 1 0 1
+4 4
+1 1 0 1
+3 1
+1 1 0
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+3
+6
+2
+
+
+Explanation
+Example case 1: The minimum cost is 33 and it can be obtained using the following sequence of operations:
+
+choose the subarray [L,R]=[2,4][L,R]=[2,4] and set A3=0A3=0 with cost 11
+choose the subarray [1,3][1,3] and set A1=0A1=0 with cost 11
+choose the subarray [3,5][3,5] and set A5=0A5=0 with cost 11
+
+Example case 2: We have to choose the whole sequence ([L,R]=[1,4][L,R]=[1,4]) in each operation, so the total cost is 3+2+1=63+2+1=6:
+
+choose the subarray [1,4][1,4] and set A1=0A1=0 with cost 33 
+choose the subarray [1,4][1,4] and set A2=0A2=0 with cost 22
+choose the subarray [1,4][1,4] and set A4=0A4=0 with cost 11
+
+Example case 3: The minimum cost is 22 and it can be obtained using the following sequence of operations:
+
+choose the subarray [2,2][2,2] and set A2=0A2=0 with cost 11
+choose the subarray [1,1][1,1] and set A1=0A1=0 with cost 11
+
+
+
+
+Author:
+5★losmi247
+
+
+Editorial:
+https://discuss.codechef.com/problems/CONDEL
+
+
+Tags:
+
+               
+                 Subarray
+                 
+                     
+                     Data Structures, Arrays, Groupings
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+2008
+
+
+Date Added:
+21-02-2021
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

@@ -1,0 +1,125 @@
+Given an integer $N$, let us consider a triangle of numbers of $N$ lines in which a number $a_{11}$ appears in the first line, two numbers $a_{21}$ and $a_{22}$ appear in the second line, three numbers $a_{31}$, $a_{32}$ and $a_{33}$ appear in the third line, etc. In general, $i$ numbers $a_{i1}, a_{i2} \dots a_{ii}$ appear in the $i^{th}$ line for all $1 \leq i \leq N$. Develop a program that will compute the largest of the sums of numbers that appear on the paths starting from the top towards the base, so that:
+
+on each path the next number is located on the row below, more precisely either directly below or below and one place to the right.
+
+Warning: large Input/Output data, be careful with certain languages 
+Input Format
+
+The first line of the input contains an integer $T$, the number of test cases. 
+Then T test cases follow. Each test case starts with an integer $N$, the number of rows. Then $N$ lines follow where in $i^{th}$ line contains $i$ integers $a_{i1}, a_{i2} \dots a_{ii}$.
+
+Output Format
+For each test case print the maximum path sum in a separate line.
+Constraints
+
+$1 \leq T \leq 1000$
+$1 \leq N \lt 100$
+$0 \leq a_{ij} \lt 100$
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+2
+3
+1
+2 1
+1 2 3
+4
+1
+1 2
+4 1 2
+2 3 1 1
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+5
+9
+
+
+Explanation
+Test case 1:
+There are a total of $4$ paths
+
+$(1,1) \rightarrow (2, 1) \rightarrow (3, 1)$ with sum equal to $4$.
+$(1,1) \rightarrow (2, 1) \rightarrow (3, 2)$ with sum equal to $5$.
+$(1,1) \rightarrow (2, 2) \rightarrow (3, 2)$ with sum equal to $4$.
+$(1,1) \rightarrow (2, 2) \rightarrow (3, 3)$ with sum equal to $5$.
+
+Therefore, the maximum sum over all paths is equal to $5$.
+Test case 2:
+There are a total of $8$ paths
+
+$(1,1) \rightarrow (2, 1) \rightarrow (3, 1) \rightarrow (4, 1)$ with sum equal to $8$.
+$(1,1) \rightarrow (2, 1) \rightarrow (3, 1) \rightarrow (4, 2)$ with sum equal to $9$.
+$(1,1) \rightarrow (2, 1) \rightarrow (3, 2) \rightarrow (4, 2)$ with sum equal to $7$.
+$(1,1) \rightarrow (2, 1) \rightarrow (3, 2) \rightarrow (4, 3)$ with sum equal to $4$.
+$(1,1) \rightarrow (2, 2) \rightarrow (3, 2) \rightarrow (4, 2)$ with sum equal to $7$.
+$(1,1) \rightarrow (2, 2) \rightarrow (3, 2) \rightarrow (4, 3)$ with sum equal to $5$.
+$(1,1) \rightarrow (2, 2) \rightarrow (3, 3) \rightarrow (4, 3)$ with sum equal to $6$.
+$(1,1) \rightarrow (2, 2) \rightarrow (3, 3) \rightarrow (4, 4)$ with sum equal to $6$.
+
+Therefore, the maximum sum over all paths is equal to $9$.
+
+
+
+Author:
+u_admin_codechef_pw
+
+
+Editorial:
+https://discuss.codechef.com/problems/SUMTRIAN
+
+
+Tags:
+
+               
+                 Top-down, Bottom-up
+                 
+                     
+                     Algorithms, Dynamic Programming, DP Approach
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+869
+
+
+Date Added:
+1-12-2008
+
+
+Time Limit:
+3 secs
+
+
+Source Limit:
+5000 Bytes
+
+
+Languages:
+PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SCM guile, ERL, CLPS, PRLG, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

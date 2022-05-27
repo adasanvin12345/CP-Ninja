@@ -1,0 +1,125 @@
+You are given arrays AA and BB of length NN each. Determine the number of good pairs.
+A pair (i,j)(i,j) (1≤i,j≤N)(1≤i,j≤N) is said to be good if all of the following conditions are satisfied:
+
+i<j;i<j;
+Ai=Bj;Ai=Bj;
+Aj=Bi;Aj=Bi;
+
+Input Format
+
+First line will contain TT, the number of test cases. Then the test cases follow.
+
+Description of each test case:
+
+First line contains an integer NN - denoting the length of the arrays.
+Second line contains NN space-separated integers A1,A2,…ANA1,A2,…AN - denoting the array AA.
+Third line contains NN space-separated integers B1,B2,…BNB1,B2,…BN - denoting the array BB.
+
+Output Format
+For each test case, output the number of good pairs.
+Constraints
+
+1≤T≤10001≤T≤1000
+2≤N≤1052≤N≤105
+1≤Ai,Bi≤1091≤Ai,Bi≤109
+Sum of NN over all test cases does not exceed 2⋅1052⋅105.
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+4
+3
+1 2 3
+3 2 1
+4
+1 2 3 4
+5 6 6 7
+3
+10 10 10
+10 10 10
+4
+4 8 1 1
+8 4 1 1
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+1
+0
+3
+2
+
+
+Explanation
+Test Case 11: The only good pair (i,j)(i,j) is (1,3)(1,3). Here,
+
+1<31<3
+A1=1A1=1 and B3=1B3=1. Thus, A1=B3A1=B3.
+A3=3A3=3 and B1=3B1=3. Thus, A3=B1A3=B1.
+
+Test Case 22: There are no good pairs.
+Test Case 33: There are 33 good pairs (i,j)(i,j). These are (1,2),(1,3),(1,2),(1,3), and (2,3)(2,3).
+Test Case 44: There are 22 good pairs (i,j)(i,j). These are (1,2)(1,2) and (3,4)(3,4).
+
+
+
+Author:
+utkarsh_adm
+
+
+Editorial:
+https://discuss.codechef.com/problems/GOODPAIRS
+
+
+Tags:
+
+               
+                 Data Structures, Observation
+                 
+                     
+                     Algorithms
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1469
+
+
+Date Added:
+9-05-2022
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

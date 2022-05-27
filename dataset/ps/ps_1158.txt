@@ -1,0 +1,100 @@
+For a permutation PP of length NN, we define L(P)L(P) to be the length of the longest increasing subsequence in PP. That is, L(P)L(P) is the largest integer KK such that there exist indices i1<i2<…<iKi1<i2<…<iK such that Pi1<Pi2<…<PiKPi1<Pi2<…<PiK. 
+Define PRPR to be the permutation (PN,PN−1,…,P1)(PN,PN−1,…,P1). 
+You are given a positive integer NN. You need to output a permutation PP of length NN such that L(P)=L(PR)L(P)=L(PR), or say that none exist.
+Note: PP is said to be a permutation of length NN if PP is a sequence of length NN consisting of NN distinct integers between 11 and NN. For example, (3,1,2)(3,1,2) is a permutation of length 33, but (1,4,2)(1,4,2), (2,2,3)(2,2,3) and (2,1)(2,1) are not.
+Input Format
+
+The first line of input contains a single integer TT, denoting the number of test cases. The description of TT test cases follows.
+Each test case consists of a single line containing one integer NN — the length of the permutation to be constructed.
+
+Output Format
+For each test case, output on a new line "YES" if there exists a valid permutation, and "NO" if there doesn't. If you outputted "YES", on the next line, output a valid permutation PP as NN space-separated integers, the ithith of which is PiPi.
+You can print each letter of the string in any case (upper or lower) (for instance, strings YES, yEs, and yes will be considered identical).
+Constraints
+
+1≤T≤10001≤T≤1000
+2≤N≤2⋅1052≤N≤2⋅105
+The sum of NN across all test cases does not exceed 2⋅1052⋅105
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+2
+2
+3
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+NO
+YES
+1 3 2
+
+
+Explanation
+Test Case 11: There are two permutations of length 22 — (1,2)(1,2) and (2,1)(2,1). The length of the LIS of (1,2)(1,2) is 22 and the length of the LIS of (2,1)(2,1) is 11. Since these permutations are reverses of each other and have unequal LIS lengths, there is no valid permutation of length 22.
+Test Case 22: The length of the LIS of (1,3,2)(1,3,2) is 22, and the length of the LIS of its reverse, (2,3,1)(2,3,1), is also 22. Therefore, this is a valid permutation of length 33.
+
+
+
+Author:
+utkarsh_adm
+
+
+Tester:
+7★aryanc403
+
+
+Editorial:
+https://discuss.codechef.com/problems/EQLIS
+
+
+Tags:
+
+               
+                 easy, longest-inc-subsequence, start22, utkarsh_adm
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1848
+
+
+Date Added:
+17-01-2022
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

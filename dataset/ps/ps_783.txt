@@ -1,0 +1,97 @@
+There are 55 cities in the country.
+The map of the country is given below.
+The tour starts from the red city.
+
+Each road is associated with a character.
+Initially, there is an empty string.
+Every time a road has been travelled the character associated gets appended to the string.
+At the green city either the string can be printed or the tour can be continued.
+In the problem, you are given a string tell whether it is possible to print the string while following the rules of the country?
+Input:
+
+First line will contain TT, number of testcases. Then the testcases follow. 
+Each testcase contains a single line of input, a string ss. The string consists only of 0′s0′s and 1′s1′s.
+
+Output:
+For each testcase, output "YES" or "NO" depending on the input.
+Constraints
+
+1≤T≤100001≤T≤10000
+1≤lengthofeachstring≤100001≤lengthofeachstring≤10000
+1≤Summationlength≤1051≤Summationlength≤105
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+1
+100
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+NO
+
+
+
+
+
+Author:
+5★theanshul
+
+
+Editorial:
+https://discuss.codechef.com/problems/ICM2006
+
+
+Tags:
+
+               
+                 Graphs, ad-hoc, Brute Force
+                 
+                     
+                     Data Structures, Algorithms, Constructive
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1586
+
+
+Date Added:
+9-02-2020
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

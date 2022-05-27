@@ -1,0 +1,100 @@
+Read problems statements in Mandarin Chinese, Russian, Vietnamese and Bengali as well.
+Suppose the population is divided into the age groups [1,10],[11,20],[21,30],…,[91,∞)[1,10],[11,20],[21,30],…,[91,∞). The age groups are numbered from 11 to 1010 and there are XiXi people in age group ii.
+The COVID vaccine drive has started and people will be vaccinated in the decreasing order of their age groups. Suppose PP people are vaccinated per day and if less than PP people are left in an age group, then the remaining doses for that day are given to the people of immediate lower age group and the process for that day continues until the vaccines for that day are finished or the entire population has been vaccinated. The selection of a person from a given age group is done randomly.
+Given XX, PP, and Chef’s age group GG, tell the minimum and the maximum number of days will it take for Chef to get vaccinated.
+Input
+
+The first line contains an integer TT, the number of test cases. Then the test cases follow. 
+Each test case contains a single line of input, twelve integers GG, PP, X1,X2,…,X10X1,X2,…,X10. 
+
+Output
+For each test case, output in a single line two space-separated integers, the minimum and maximum time required for Chef to get vaccinated.
+Constraints
+
+1≤T≤1041≤T≤104
+1≤G≤101≤G≤10
+1≤P,Xi≤1051≤P,Xi≤105
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+3
+5 2 2 2 2 2 2 2 2 2 2 2
+5 2 2 2 2 2 2 3 2 2 2 2
+9 4 2 2 2 2 3 2 2 2 2 2
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+6 6
+6 7
+1 1
+
+
+Explanation
+Test Case 11: It takes one day for every age group to get vaccinated.
+Test Case 22: Age groups 10−710−7 get vaccinated in a total of 44 days. On the 55-th day, 22 out of 33 people of age group 66 get vaccinated. On the 66-th day, the last person of the 66-th age group and one random person of the 55-th age group gets vaccinated. So if the person is Chef, the minimum time required for him to get vaccinated will be 66 days, and if not, Chef will get vaccinated on the 77-th day.
+Test Case 33: The last 22 age groups get vaccinated on the same day.
+
+
+
+Author:
+daanish_adm
+
+
+Editorial:
+https://discuss.codechef.com/problems/VACCINE3
+
+
+Tags:
+
+               
+                 Modular Arithmetic, Basic Maths, ad-hoc
+                 
+                     
+                     Mathematics, Algorithms, Constructive
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1731
+
+
+Date Added:
+11-05-2021
+
+
+Time Limit:
+0.5 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

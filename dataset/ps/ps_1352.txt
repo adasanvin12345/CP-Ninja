@@ -1,0 +1,125 @@
+Read problem statements in Bengali, Russian, Mandarin and Vietnamese as well.
+Chef is given two integers NN and MM. Please help Chef find any connected undirected graph GG consisting of exactly NN vertices and MM edges, such that the number of bridges in GG is maximized (among all graphs with NN vertices and MM edges). GG cannot have self-loops or multiple edges.
+If there is more than one connected undirected graph with the maximum number of bridges, you may print any one of them.
+Note:
+A bridge is an edge whose removal increases the number of connected components of the graph.
+Input Format
+
+The first line of input contains a single integer TT, denoting the number of test cases. The description of TT test cases follows.
+Each testcase consists of a single line of input, containing two integers N,MN,M - the number of vertices and edges of the graph you must construct.
+
+Output Format
+For each test case, output MM lines where the ii-th line contains two space-separated integers denoting the ii-th edge of the graph GG you constructed. The edges may be printed in any order, and for each edge the endpoints may be printed in any order.
+Note that GG must not contain self-loops or multiple edges, and no other graph on NN vertices and MM edges can contain strictly more bridges than GG.
+Constraints
+
+1≤T≤1031≤T≤103
+2≤N≤1032≤N≤103
+N−1≤M≤min(N⋅(N−1)/2,105)N−1≤M≤min(N⋅(N−1)/2,105)
+Sum of NN over all test cases do not exceed 103103
+Sum of MM over all test cases do not exceed 105105
+
+Subtasks
+
+Subtask 1 (100 points): Original constraints
+
+
+                        Sample Input 1
+                        
+
+
+
+
+
+3
+4 4
+5 4
+3 3
+
+
+
+                        Sample Output 1
+                        
+
+
+
+
+
+1 2
+2 3
+3 4
+1 3
+1 2
+2 3
+3 4
+4 5
+1 2
+2 3
+3 1
+
+
+Explanation
+Test case 11: There is exactly 11 bridge in the graph and it cannot be increased further.
+
+
+
+Test case 22: Since M=N−1M=N−1 and we are required to output a connected graph, the graph will always be a tree and hence have 44 bridges. Any tree is acceptable here.
+
+
+
+Test case 33: Since M=N⋅(N−1)/2M=N⋅(N−1)/2 our only choice is a complete graph, which has 00 bridges.
+
+
+
+
+
+
+Author:
+utkarsh_adm
+
+
+Editorial:
+https://discuss.codechef.com/problems/MAXBRIDGE
+
+
+Tags:
+
+               
+                 Graph Algos, Constructive
+                 
+                     
+                     Algorithms
+                 
+               
+             
+             
+
+
+
+                        Difficulty Rating:
+                    
+
+1972
+
+
+Date Added:
+4-11-2021
+
+
+Time Limit:
+1 secs
+
+
+Source Limit:
+50000 Bytes
+
+
+Languages:
+CPP17, PYTH 3.6, JAVA, C, CPP14, PYTH, PYP3, CS2, ADA, PYPY, TEXT, PAS fpc, NODEJS, RUBY, PHP, GO, HASK, TCL, kotlin, PERL, SCALA, LUA, BASH, JS, rust, LISP sbcl, PAS gpc, BF, CLOJ, R, D, CAML, swift, FORT, ASM, FS, WSPC, LISP clisp, SQL, SCM guile, PERL6, ERL, CLPS, PRLG, SQLQ, ICK, NICE, ICON, COB, SCM chicken, PIKE, SCM qobi, ST, NEM
+
+
+
+
+
+Submit
+

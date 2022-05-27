@@ -240,7 +240,7 @@ app.use((req, res, next) => {
 //     }
 //   )
 //   ps_statement = ps_statement.toString()
-//   const blog = new Blog({
+//   const question = new Blog({
 //     index_of_ps: i + 1,
 //     title: ps_titles[i],
 //     code: ps_codes[i],
@@ -250,7 +250,7 @@ app.use((req, res, next) => {
 //     // tfidf: cur_tfidf,
 //     statement: ps_statement,
 //   })
-//   blog
+//   question
 //     .save()
 //     .then((result) => {
 //       // res.redirect('/blogs')
