@@ -291,7 +291,6 @@ top10_questions_copy = [];
 // routes
 
 app.get("/", (req, res) => {
-  // res.redirect('/blogs')
   console.log("search reached");
   res.redirect("/questions");
 });
@@ -333,45 +332,11 @@ function cleaner(pss) {
   return pss;
 }
 
-// function return_query_tfidf(q) {
-//   q = cleaner(q);
-//   let query_keywords = [];
-//   q = q.split(" ");
-//   query_keywords = q;
-//   for (let j = 0; j < query_keywords.length; j++) {
-//     // console.log(query_keywords[j]);
-//     query_keywords[j] = porterStemmer(query_keywords[j]);
-//     // console.log(query_keywords[j]);
-//     if (dict.search(query_keywords[j])[0] != undefined)
-//       query_keywords[j] = dict.search(query_keywords[j])[0].word;
-//     // console.log("dict", query_keywords[j]);
-//   }
-//   console.log("query after stemming and lemetization", query_keywords);
-//   query_tf = [];
-//   for (let j = 0; j < final_kw.length; j++) {
-//     query_tf.push(0);
-//   }
-//   if (query_keywords.length == 0) {
-//     console.log("query_keyword length is 0");
-//   }
-//   for (let j = 0; j < query_keywords.length; j++) {
-//     if (final_kw.indexOf(query_keywords[j]) != -1)
-//       query_tf[final_kw.indexOf(query_keywords[j])] += 1;
-//   }
-
-//   query_tfidf = [];
-//   for (let j = 0; j < final_kw.length; j++) {
-//     query_tfidf.push(query_tf[j]);
-//     query_tfidf[j] = (query_tfidf[j] * idf[j]) / query_keywords.length;
-//   }
-//   return query_tfidf;
-// }
 function return_query_tfidf(q) {
   const query_keywords = q.split(" ").map((word) => {
     const stemmedWord = porterStemmer(cleaner(word));
     return dict.search(stemmedWord)[0]?.word || stemmedWord;
   });
-  console.log("q_keywords", query_keywords);
 
   const query_tf = {};
   const query_tfidf = {};
@@ -385,7 +350,6 @@ function return_query_tfidf(q) {
   for (const keyword of query_keywords) {
     if (final_kw.includes(keyword)) {
       const index = final_kw.indexOf(keyword);
-      console.log("index in final_kw", index, final_kw[index]);
       query_tfidf[keyword] =
         ((query_tf[keyword] || 0) * idf[index]) / query_keywords.length;
     }
@@ -398,15 +362,9 @@ function calc_similarity(a, b) {
   sum = 0;
   sum1 = 0;
   sum2 = 0;
-  // for (let i = 0; i < final_kw.length; i++) {
-  //   sum += parseFloat(a[i] * b[i]);
-  //   sum1 += parseFloat(a[i] * a[i]);
-  //   sum2 += parseFloat(b[i] * b[i]);
-  // }
   for (let keyword in a) {
     const value = a[keyword];
     const index = final_kw.indexOf(keyword);
-    // console.log(keyword, " -> ", index, " <- ", final_kw[index]);
     sum += parseFloat(value * b[index]);
     sum1 += parseFloat(value * value);
     sum2 += parseFloat(value * b[index]);
@@ -420,12 +378,9 @@ function calc_similarity(a, b) {
 
 function top10(q) {
   query_tfidf = return_query_tfidf(q);
-  console.log("querytfidf", query_tfidf);
   all_questions = [];
   for (let i = 0; i < 1450; i++) {
     let cur_tfidf = tfidf[i];
-    // console.log(typeof cur_tfidf);
-    // if (i == 0) console.log("tfidf[i]", tfidf[i]);
     similarity_value = calc_similarity(query_tfidf, cur_tfidf);
     all_questions.push([similarity_value, i]);
   }
@@ -438,9 +393,23 @@ function top10(q) {
   return top10_questions;
 }
 
+async function insertIntoCache(query, results, maxSize) {
+  // Check if cache size exceeds the maximum limit
+  const cacheSize = await CachedResults.countDocuments();
+  if (cacheSize >= maxSize) {
+    // Find the oldest entry and remove it
+    const oldestEntry = await CachedResults.findOne({}, null, {
+      sort: { timestamp: 1 },
+    });
+    await CachedResults.findByIdAndDelete(oldestEntry._id);
+  }
+
+  // Insert the new entry
+  await CachedResults.create({ query, results });
+}
+
 async function getQueryResults(query) {
   try {
-    // Check if cached results exist for the query in MongoDB
     const cachedResult = await CachedResults.findOne({ query }).exec();
 
     if (cachedResult) {
@@ -449,7 +418,7 @@ async function getQueryResults(query) {
     } else {
       console.log(`Cache miss for query: ${query}`);
       const results = top10(query);
-      await CachedResults.create({ query, results });
+      await insertIntoCache(query, results, 1000);
       return results;
     }
   } catch (err) {
