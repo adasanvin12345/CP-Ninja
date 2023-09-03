@@ -4,7 +4,8 @@
   "description": "",
   "main": "create.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +20,8 @@
     "morgan": "^1.10.0",
     "spelling": "^2.0.2",
     "spin.js": "^4.1.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
   }
 }
