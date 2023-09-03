@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@stdlib/nlp-porter-stemmer": "^0.0.7",
+    "dotenv": "^16.3.1",
     "ejs": "^3.1.2",
     "express": "^4.17.1",
     "keyword-extractor": "^0.0.21",

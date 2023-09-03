@@ -1,18 +1,20 @@
-const express = require('express')
-const morgan = require('morgan')
-const mongoose = require('mongoose')
-const Blog = require('./models/blog')
-const Fb = require('./models/feedback')
-const fs = require('fs')
-const { readFile } = require('fs/promises')
-const keyword_extractor = require('keyword-extractor')
-const { last, lte } = require('lodash')
-const e = require('express')
-var porterStemmer = require('@stdlib/nlp-porter-stemmer')
+const express = require("express");
+const morgan = require("morgan");
+const mongoose = require("mongoose");
+const Blog = require("./models/blog");
+const CachedResults = require("./models/cachedResult");
+const Fb = require("./models/feedback");
+const fs = require("fs");
+const { readFile } = require("fs/promises");
+const keyword_extractor = require("keyword-extractor");
+const { last, lte, sortBy } = require("lodash");
+const e = require("express");
+var porterStemmer = require("@stdlib/nlp-porter-stemmer");
 // const SpellCheck = require('@caijs/spellcheck')
-var spelling = require('spelling'),
-  dictionary = require('spelling/dictionaries/en_US.js')
-var dict = new spelling(dictionary)
+var spelling = require("spelling"),
+  dictionary = require("spelling/dictionaries/en_US.js");
+var dict = new spelling(dictionary);
+require("dotenv").config();
 
 // making the constants folder and making TFIDF array
 
@@ -139,83 +141,107 @@ var dict = new spelling(dictionary)
 
 //reading the contents from the constants folder
 
-let final_kw = fs.readFileSync(__dirname + '/constants/keywords.txt', {
-  encoding: 'utf-8',
-})
-final_kw = final_kw.split('\n')
-let idf = fs.readFileSync(__dirname + '/constants/idf.txt', {
-  encoding: 'utf-8',
-})
-idf = idf.split('\n')
+let final_kw = fs.readFileSync(__dirname + "/constants/keywords.txt", {
+  encoding: "utf-8",
+});
+// console.log(final_kw);
+final_kw = final_kw.split("\n");
+final_kw = final_kw.join("");
+final_kw = final_kw.split("\r");
+// console.log(final_kw);
+let idf = fs.readFileSync(__dirname + "/constants/idf.txt", {
+  encoding: "utf-8",
+});
+idf = idf.split("\n");
+idf = idf.join("");
+idf = idf.split("\r");
 for (let i = 0; i < idf.length; i++) {
-  idf[i] = parseFloat(idf[i])
+  idf[i] = parseFloat(idf[i]);
 }
-let tfidf = fs.readFileSync(__dirname + '/constants/tfidf.txt', {
-  encoding: 'utf-8',
-})
-tfidf = tfidf.split('\n')
-let tfidf2 = []
+let tfidf = fs.readFileSync(__dirname + "/constants/tfidf.txt", {
+  encoding: "utf-8",
+});
+tfidf = tfidf.split("\n");
+// console.log("dsfdsf", tfidf);
+tfidf = tfidf.join("");
+tfidf = tfidf.split("\r");
+let tfidf2 = [];
 for (let i = 0; i < 1450; i++) {
-  let row_tfidf = []
+  let row_tfidf = [];
   for (let j = 0; j < final_kw.length; j++) {
-    let cur = parseFloat(tfidf[i * final_kw.length + j])
+    let cur = parseFloat(tfidf[i * final_kw.length + j]);
+    // if (i == 0 && j < 10)
+    // console.log("dfdsfdsfdsf", tfidf[i * final_kw.length + j]);
     // tfidf.shift()
-    row_tfidf.push(cur)
+    row_tfidf.push(cur);
   }
-  tfidf2.push(row_tfidf)
+  tfidf2.push(row_tfidf);
 }
-tfidf = tfidf2
-let ps_titles = fs.readFileSync(__dirname + '/dataset/problem_titles.txt', {
-  encoding: 'utf-8',
-})
-ps_titles = ps_titles.split('\n')
+tfidf = tfidf2;
+// console.log(tfidf);
+let ps_titles = fs.readFileSync(__dirname + "/dataset/problem_titles.txt", {
+  encoding: "utf-8",
+});
+ps_titles = ps_titles.split("\n");
+ps_titles = ps_titles.join("");
+ps_titles = ps_titles.split("\r");
+// console.log(ps_titles);
 let ps_difficulties = fs.readFileSync(
-  __dirname + '/dataset/problem_difficulties.txt',
+  __dirname + "/dataset/problem_difficulties.txt",
   {
-    encoding: 'utf-8',
+    encoding: "utf-8",
   }
-)
-ps_difficulties = ps_difficulties.split('\n')
+);
+ps_difficulties = ps_difficulties.split("\n");
+ps_difficulties = ps_difficulties.join("");
+ps_difficulties = ps_difficulties.split("\r");
 let ps_submissions = fs.readFileSync(
-  __dirname + '/dataset/problem_submissions.txt',
+  __dirname + "/dataset/problem_submissions.txt",
   {
-    encoding: 'utf-8',
+    encoding: "utf-8",
   }
-)
-ps_submissions = ps_submissions.split('\n')
-let ps_urls = fs.readFileSync(__dirname + '/dataset/problem_urls.txt', {
-  encoding: 'utf-8',
-})
-ps_urls = ps_urls.split('\n')
-let ps_codes = fs.readFileSync(__dirname + '/dataset/problem_codes.txt', {
-  encoding: 'utf-8',
-})
-ps_codes = ps_codes.split('\n')
-
+);
+ps_submissions = ps_submissions.split("\n");
+ps_submissions = ps_submissions.join("");
+ps_submissions = ps_submissions.split("\r");
+let ps_urls = fs.readFileSync(__dirname + "/dataset/problem_urls.txt", {
+  encoding: "utf-8",
+});
+ps_urls = ps_urls.split("\n");
+ps_urls = ps_urls.join("");
+ps_urls = ps_urls.split("\r");
+let ps_codes = fs.readFileSync(__dirname + "/dataset/problem_codes.txt", {
+  encoding: "utf-8",
+});
+ps_codes = ps_codes.split("\n");
+ps_codes = ps_codes.join("");
+ps_codes = ps_codes.split("\r");
+// console.log(ps_submissions);
 // setting up the express app
-const app = express()
-const dbURI =
-  'mongodb+srv://adarsh_modi_01:adarsh_modi_01@nodetuts.ei3k1.mongodb.net/node-tuts2?retryWrites=true&w=majority'
-const PORT = process.env.PORT || 3000
+const app = express();
+const PORT = process.env.PORT || 3000;
 mongoose
-  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => {
-    app.listen(PORT)
-    console.log('mongoDb connected successfully')
+  .connect(process.env.mongo_url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
-  .catch((err) => console.log(err))
+  .then((result) => {
+    app.listen(PORT);
+    console.log("mongoDb connected successfully");
+  })
+  .catch((err) => console.log(err));
 
 // register view engine
-app.set('view engine', 'ejs')
+app.set("view engine", "ejs");
 
 // middleware & static files
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(morgan('dev'))
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 app.use((req, res, next) => {
-  res.locals.path = req.path
-  next()
-})
+  res.locals.path = req.path;
+  next();
+});
 
 //adding data to the mongoDb datebase
 
@@ -260,359 +286,426 @@ app.use((req, res, next) => {
 //       console.log(err)
 //     })
 // }
-top10_questions_copy = []
+top10_questions_copy = [];
 
 // routes
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   // res.redirect('/blogs')
-  console.log('search reached')
-  res.redirect('/questions')
-})
+  console.log("search reached");
+  res.redirect("/questions");
+});
 
 // question routes
-app.get('/questions/search', (req, res) => {
-  res.render('search', { title: 'Search a question' })
-})
+app.get("/questions/search", (req, res) => {
+  res.render("search", { title: "Search a question" });
+});
 
-app.get('/questions', (req, res) => {
-  top10_questions_copy = []
+app.get("/questions", (req, res) => {
+  top10_questions_copy = [];
   for (let i = 1; i < 15; i++) {
-    top10_questions_copy.push(i)
+    top10_questions_copy.push(i);
   }
   Blog.find({
     index_of_ps: { $in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] },
   })
     .sort({ createdAt: -1 })
     .then((result) => {
-      res.render('index', {
+      res.render("index", {
         questions: result,
-        title: 'All Questions',
-        query: '',
-      })
+        title: "All Questions",
+        query: "",
+      });
     })
     .catch((err) => {
-      console.log(err)
-    })
-  console.log('/questions reached')
-})
+      console.log(err);
+    });
+  console.log("/questions reached");
+});
 
 function cleaner(pss) {
-  let punctuationless = pss.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
-  pss = punctuationless.replace(/\s{2,}/g, ' ')
-  pss = pss.replace(/\d+/g, '')
-  pss = pss.replace(/\s+/g, ' ').trim()
-  pss = pss.replace(',', ' ')
-  pss = pss.replace(/[^\w\s]/g, '').toLowerCase()
-  return pss
+  let punctuationless = pss.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+  pss = punctuationless.replace(/\s{2,}/g, " ");
+  pss = pss.replace(/\d+/g, "");
+  pss = pss.replace(/\s+/g, " ").trim();
+  pss = pss.replace(",", " ");
+  pss = pss.replace(/[^\w\s]/g, "").toLowerCase();
+  return pss;
 }
 
+// function return_query_tfidf(q) {
+//   q = cleaner(q);
+//   let query_keywords = [];
+//   q = q.split(" ");
+//   query_keywords = q;
+//   for (let j = 0; j < query_keywords.length; j++) {
+//     // console.log(query_keywords[j]);
+//     query_keywords[j] = porterStemmer(query_keywords[j]);
+//     // console.log(query_keywords[j]);
+//     if (dict.search(query_keywords[j])[0] != undefined)
+//       query_keywords[j] = dict.search(query_keywords[j])[0].word;
+//     // console.log("dict", query_keywords[j]);
+//   }
+//   console.log("query after stemming and lemetization", query_keywords);
+//   query_tf = [];
+//   for (let j = 0; j < final_kw.length; j++) {
+//     query_tf.push(0);
+//   }
+//   if (query_keywords.length == 0) {
+//     console.log("query_keyword length is 0");
+//   }
+//   for (let j = 0; j < query_keywords.length; j++) {
+//     if (final_kw.indexOf(query_keywords[j]) != -1)
+//       query_tf[final_kw.indexOf(query_keywords[j])] += 1;
+//   }
+
+//   query_tfidf = [];
+//   for (let j = 0; j < final_kw.length; j++) {
+//     query_tfidf.push(query_tf[j]);
+//     query_tfidf[j] = (query_tfidf[j] * idf[j]) / query_keywords.length;
+//   }
+//   return query_tfidf;
+// }
 function return_query_tfidf(q) {
-  q = cleaner(q)
-  let query_keywords = []
-  q = q.split(' ')
-  query_keywords = q
-  for (let j = 0; j < query_keywords.length; j++) {
-    query_keywords[j] = porterStemmer(query_keywords[j])
-    if (dict.search(query_keywords[j])[0] != undefined)
-      query_keywords[j] = dict.search(query_keywords[j])[0].word
+  const query_keywords = q.split(" ").map((word) => {
+    const stemmedWord = porterStemmer(cleaner(word));
+    return dict.search(stemmedWord)[0]?.word || stemmedWord;
+  });
+  console.log("q_keywords", query_keywords);
+
+  const query_tf = {};
+  const query_tfidf = {};
+
+  for (const keyword of query_keywords) {
+    if (final_kw.includes(keyword)) {
+      query_tf[keyword] = (query_tf[keyword] || 0) + 1;
+    }
   }
-  console.log('query after stemming and lemetization', query_keywords)
-  query_tf = []
-  for (let j = 0; j < final_kw.length; j++) {
-    query_tf.push(0)
+  console.log("query_tf", query_tf);
+  for (const keyword of query_keywords) {
+    if (final_kw.includes(keyword)) {
+      const index = final_kw.indexOf(keyword);
+      console.log("index in final_kw", index, final_kw[index]);
+      query_tfidf[keyword] =
+        ((query_tf[keyword] || 0) * idf[index]) / query_keywords.length;
+    }
   }
-  if (query_keywords.length == 0) {
-    console.log('query_keyword length is 0')
-  }
-  for (let j = 0; j < query_keywords.length; j++) {
-    if (final_kw.indexOf(query_keywords[j]) != -1)
-      query_tf[final_kw.indexOf(query_keywords[j])] += 1
-  }
-  query_tfidf = []
-  for (let j = 0; j < final_kw.length; j++) {
-    query_tfidf.push(query_tf[j])
-    query_tfidf[j] = (query_tfidf[j] * idf[j]) / query_keywords.length
-  }
-  return query_tfidf
+
+  return query_tfidf;
 }
 
 function calc_similarity(a, b) {
-  sum = 0
-  sum1 = 0
-  sum2 = 0
-  for (let i = 0; i < final_kw.length; i++) {
-    sum += parseFloat(a[i] * b[i])
-    sum1 += parseFloat(a[i] * a[i])
-    sum2 += parseFloat(b[i] * b[i])
+  sum = 0;
+  sum1 = 0;
+  sum2 = 0;
+  // for (let i = 0; i < final_kw.length; i++) {
+  //   sum += parseFloat(a[i] * b[i]);
+  //   sum1 += parseFloat(a[i] * a[i]);
+  //   sum2 += parseFloat(b[i] * b[i]);
+  // }
+  for (let keyword in a) {
+    const value = a[keyword];
+    const index = final_kw.indexOf(keyword);
+    // console.log(keyword, " -> ", index, " <- ", final_kw[index]);
+    sum += parseFloat(value * b[index]);
+    sum1 += parseFloat(value * value);
+    sum2 += parseFloat(value * b[index]);
   }
-  sum1 = Math.sqrt(sum1)
-  sum2 = Math.sqrt(sum2)
-  sum3 = sum1 * sum2
-  if (sum3 == 0) return 0
-  return sum / sum3
+  sum1 = Math.sqrt(sum1);
+  sum2 = Math.sqrt(sum2);
+  sum3 = sum1 * sum2;
+  if (sum3 == 0) return 0;
+  return sum / sum3;
 }
 
 function top10(q) {
-  query_tfidf = return_query_tfidf(q)
-  all_questions = []
+  query_tfidf = return_query_tfidf(q);
+  console.log("querytfidf", query_tfidf);
+  all_questions = [];
   for (let i = 0; i < 1450; i++) {
-    let cur_tfidf = tfidf[i]
-    similarity_value = calc_similarity(query_tfidf, cur_tfidf)
-    all_questions.push([similarity_value, i])
+    let cur_tfidf = tfidf[i];
+    // console.log(typeof cur_tfidf);
+    // if (i == 0) console.log("tfidf[i]", tfidf[i]);
+    similarity_value = calc_similarity(query_tfidf, cur_tfidf);
+    all_questions.push([similarity_value, i]);
   }
-  all_questions.sort((a, b) => (a[0] > b[0] ? -1 : 1))
-  top10_questions = []
+  all_questions.sort((a, b) => (a[0] > b[0] ? -1 : 1));
+  top10_questions = [];
   for (let i = 0; i < 15; i++) {
-    top10_questions.push(all_questions[i][1] + 1)
+    top10_questions.push(all_questions[i][1] + 1);
   }
-  return top10_questions
+  console.log(top10_questions);
+  return top10_questions;
 }
-let cur_query = ''
-app.post('/questions', (req, res) => {
+
+async function getQueryResults(query) {
+  try {
+    // Check if cached results exist for the query in MongoDB
+    const cachedResult = await CachedResults.findOne({ query }).exec();
+
+    if (cachedResult) {
+      console.log(`Cache hit for query: ${query}`);
+      return cachedResult.results;
+    } else {
+      console.log(`Cache miss for query: ${query}`);
+      const results = top10(query);
+      await CachedResults.create({ query, results });
+      return results;
+    }
+  } catch (err) {
+    console.error("Error while retrieving or caching results:", err);
+    return top10(query);
+  }
+}
+
+let cur_query = "";
+app.post("/questions", async (req, res) => {
   if (req.body.category != undefined) {
-    sort_by = req.body.category
-    all_questions = []
+    sort_by = req.body.category;
+    console.log("sortby", sortBy);
+    all_questions = [];
     setTimeout(() => {
-      if (sort_by === 'code') {
+      if (sort_by === "code") {
         Blog.find({ index_of_ps: { $in: top10_questions_copy } })
           .sort({ code: 1 })
           .then((question) => {
-            res.render('index', {
+            res.render("index", {
               questions: question,
-              title: 'Blogs',
+              title: "Blogs",
               query: req.body.category,
-            })
+            });
           })
           .catch((err) => {
-            console.log(err)
-          })
-      } else if (sort_by === 'diff') {
+            console.log(err);
+          });
+      } else if (sort_by === "diff") {
         Blog.find({ index_of_ps: { $in: top10_questions_copy } })
           .sort({ diff: 1 })
           .then((question) => {
-            res.render('index', {
+            res.render("index", {
               questions: question,
-              title: 'Blogs',
+              title: "Blogs",
               query: req.body.category,
-            })
+            });
           })
           .catch((err) => {
-            console.log(err)
-          })
+            console.log(err);
+          });
       } else {
         Blog.find({ index_of_ps: { $in: top10_questions_copy } })
           .sort({ submissions: 1 })
           .then((question) => {
-            res.render('index', {
+            res.render("index", {
               questions: question,
-              title: 'Blogs',
+              title: "Blogs",
               query: req.body.category,
-            })
+            });
           })
           .catch((err) => {
-            console.log(err)
-          })
+            console.log(err);
+          });
       }
-    }, 500)
+    }, 500);
   } else {
-    let query_cleaned = req.body.query
-    query_cleaned = cleaner(query_cleaned)
-    top10_questions = top10(query_cleaned)
-    top10_questions_copy = top10_questions
-    all_questions = []
+    let query_cleaned = req.body.query;
+    console.log("query : ", query_cleaned);
+    query_cleaned = cleaner(query_cleaned);
+    console.log("query_cleaned : ", query_cleaned);
+    top10_questions = await getQueryResults(query_cleaned);
+    top10_questions_copy = top10_questions;
+    all_questions = [];
     Blog.aggregate([
       { $match: { index_of_ps: { $in: top10_questions } } },
       {
         $addFields: {
           __top10_questions: {
-            $indexOfArray: [top10_questions, '$index_of_ps'],
+            $indexOfArray: [top10_questions, "$index_of_ps"],
           },
         },
       },
       { $sort: { __top10_questions: 1 } },
     ])
       .then((question) => {
-        res.render('index', {
+        res.render("index", {
           questions: question,
-          title: 'Questions',
+          title: "Questions",
           query: req.body.query,
-        })
+        });
       })
       .catch((err) => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   }
-})
+});
 
 function format_contraints(constraints) {
-  constraints = constraints.split(' ')
+  constraints = constraints.split(" ");
 
   for (let i = 0; i < constraints.length; i++) {
-    if (constraints[i] === '\\leq') constraints[i] = '<='
-    if (constraints[i] === '\\geq') constraints[i] = '>='
+    if (constraints[i] === "\\leq") constraints[i] = "<=";
+    if (constraints[i] === "\\geq") constraints[i] = ">=";
   }
-  constraints = constraints.join(' ')
-  return constraints
+  constraints = constraints.join(" ");
+  return constraints;
 }
 function format_contraints2(constraints) {
   for (let i = 0; i < constraints.length; i++) {
-    if (constraints[i][0] === ',') constraints[i] = constraints[i].substr(1)
-    if (constraints[i] != '\r' && constraints[i].length > 2) {
-      let curLen = constraints[i].length
-      let left = constraints[i].substr(0, (curLen - 1) / 2)
-      let right = constraints[i].substr((curLen - 1) / 2, (curLen - 1) / 2)
+    if (constraints[i][0] === ",") constraints[i] = constraints[i].substr(1);
+    if (constraints[i] != "\r" && constraints[i].length > 2) {
+      let curLen = constraints[i].length;
+      let left = constraints[i].substr(0, (curLen - 1) / 2);
+      let right = constraints[i].substr((curLen - 1) / 2, (curLen - 1) / 2);
       if (left === right) {
-        constraints[i] = left + '\r'
+        constraints[i] = left + "\r";
       }
     }
   }
-  return constraints
+  return constraints;
 }
 
-app.post('/feedbacks', (req, res) => {
-  const fb = new Fb(req.body)
+app.post("/feedbacks", (req, res) => {
+  const fb = new Fb(req.body);
   setTimeout(() => {
     fb.save()
       .then((result) => {
-        res.redirect('/feedbacks')
+        res.redirect("/feedbacks");
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }, 1800)
-})
+        console.log(err);
+      });
+  }, 1800);
+});
 
-app.get('/feedbacks', (req, res) => {
+app.get("/feedbacks", (req, res) => {
   Fb.find({})
     .sort({ createdAt: -1 })
     .then((result) => {
-      res.render('feedback', { feedbacks: result, title: 'All Feedbacks' })
+      res.render("feedback", { feedbacks: result, title: "All Feedbacks" });
     })
     .catch((err) => {
-      console.log(err)
-    })
+      console.log(err);
+    });
   // res.render('feedback', { title: 'All Feedbacks' })
-  console.log('/feedbacks reached')
-})
+  console.log("/feedbacks reached");
+});
 
-app.get('/questions/:id', (req, res) => {
-  const id = req.params.id
+app.get("/questions/:id", (req, res) => {
+  const id = req.params.id;
   Blog.findById(id)
     .then((result) => {
-      let statement = result.statement
-      statement = statement.split('$')
-      statement = statement.join()
+      let statement = result.statement;
+      statement = statement.split("$");
+      statement = statement.join();
 
-      let last = statement[0]
-      statement2 = last
+      let last = statement[0];
+      statement2 = last;
       for (let i = 1; i < statement.length; i++) {
         if (
           !(
             statement[i] === last && statement[i].toUpperCase() === statement[i]
           )
         ) {
-          statement2 += statement[i]
-          last = statement[i]
+          statement2 += statement[i];
+          last = statement[i];
         }
       }
-      statement = statement2
-      let ps = ''
-      statement = statement.split('Constraints')
-      ps = statement[0]
+      statement = statement2;
+      let ps = "";
+      statement = statement.split("Constraints");
+      ps = statement[0];
 
-      statement = statement[1]
-      subtasks = ''
+      statement = statement[1];
+      subtasks = "";
       if (statement === undefined) {
-        res.render('error', { title: 'PAGE NOT FOUND' })
+        res.render("error", { title: "PAGE NOT FOUND" });
       }
-      if ((statement.match('Subtasks') || []).length != 0) {
-        statement = statement.split('Subtasks')
-        constraints = statement[0]
-        constraints = format_contraints(constraints)
-        constraints = constraints.split('\n')
-        constraints = format_contraints2(constraints)
-        statement = statement[1]
+      if ((statement.match("Subtasks") || []).length != 0) {
+        statement = statement.split("Subtasks");
+        constraints = statement[0];
+        constraints = format_contraints(constraints);
+        constraints = constraints.split("\n");
+        constraints = format_contraints2(constraints);
+        statement = statement[1];
         if (statement === undefined) {
-          res.render('error', { title: 'PAGE NOT FOUND' })
+          res.render("error", { title: "PAGE NOT FOUND" });
         }
-        statement = statement.split('Sample Input')
-        subtasks = statement[0]
-        subtasks = format_contraints(subtasks)
-        subtasks = subtasks.split('\n')
-        subtasks = format_contraints2(subtasks)
-        statement = statement[1]
+        statement = statement.split("Sample Input");
+        subtasks = statement[0];
+        subtasks = format_contraints(subtasks);
+        subtasks = subtasks.split("\n");
+        subtasks = format_contraints2(subtasks);
+        statement = statement[1];
         if (statement === undefined) {
-          res.render('error', { title: 'PAGE NOT FOUND' })
+          res.render("error", { title: "PAGE NOT FOUND" });
         }
       } else {
-        statement = statement.split('Sample Input')
-        constraints = statement[0]
-        constraints = format_contraints(constraints)
-        constraints = constraints.split('\n')
-        constraints = format_contraints2(constraints)
-        subtasks = []
-        statement = statement[1]
+        statement = statement.split("Sample Input");
+        constraints = statement[0];
+        constraints = format_contraints(constraints);
+        constraints = constraints.split("\n");
+        constraints = format_contraints2(constraints);
+        subtasks = [];
+        statement = statement[1];
         if (statement === undefined) {
-          res.render('error', { title: 'PAGE NOT FOUND' })
+          res.render("error", { title: "PAGE NOT FOUND" });
         }
       }
-      statement = statement.split('Sample Output')
-      sample_input = statement[0].split('\n')
-      statement = statement[1]
-      sample_output = []
-      explanation = []
-      if ((statement.match('Explanation') || []).length != 0) {
-        statement = statement.split('Explanation')
-        sample_output = statement[0].split('\n')
-        statement = statement[1]
+      statement = statement.split("Sample Output");
+      sample_input = statement[0].split("\n");
+      statement = statement[1];
+      sample_output = [];
+      explanation = [];
+      if ((statement.match("Explanation") || []).length != 0) {
+        statement = statement.split("Explanation");
+        sample_output = statement[0].split("\n");
+        statement = statement[1];
         if (statement === undefined) {
-          res.render('error', { title: 'PAGE NOT FOUND' })
+          res.render("error", { title: "PAGE NOT FOUND" });
         }
-        statement = statement.split('Author')
-        explanation = statement[0].split('\n')
+        statement = statement.split("Author");
+        explanation = statement[0].split("\n");
       } else {
-        statement = statement.split('Author')
-        sample_output = statement[0].split('\n')
-        statement = statement[1]
+        statement = statement.split("Author");
+        sample_output = statement[0].split("\n");
+        statement = statement[1];
         if (statement === undefined) {
-          res.render('error', { title: 'PAGE NOT FOUND' })
+          res.render("error", { title: "PAGE NOT FOUND" });
         }
-      }
-
-      statement = ps
-      if ((statement.match('Input Format') || []).length != 0) {
-        statement = statement.split('Input Format')
-        ps = statement[0].split('\n')
-        statement = statement[1]
-      } else {
-        statement = statement.split('Input')
-        ps = statement[0].split('\n')
-        statement = statement[1]
-      }
-      if (statement === undefined) {
-        res.render('error', { title: 'PAGE NOT FOUND' })
       }
 
-      if ((statement.match('Output Format') || []).length != 0) {
-        statement = statement.split('Output Format')
-        input = statement[0].split('\n')
-        statement = statement[1]
+      statement = ps;
+      if ((statement.match("Input Format") || []).length != 0) {
+        statement = statement.split("Input Format");
+        ps = statement[0].split("\n");
+        statement = statement[1];
       } else {
-        statement = statement.split('Output')
-        input = statement[0].split('\n')
-        if (input[0] === ':\r') input.shift()
-        statement = statement[1]
+        statement = statement.split("Input");
+        ps = statement[0].split("\n");
+        statement = statement[1];
       }
       if (statement === undefined) {
-        res.render('error', { title: 'PAGE NOT FOUND' })
+        res.render("error", { title: "PAGE NOT FOUND" });
       }
-      output = statement.split('\n')
-      if (output[0] === ':\r') output.shift()
-      subtask_len = subtasks.length
-      res.render('details', {
+
+      if ((statement.match("Output Format") || []).length != 0) {
+        statement = statement.split("Output Format");
+        input = statement[0].split("\n");
+        statement = statement[1];
+      } else {
+        statement = statement.split("Output");
+        input = statement[0].split("\n");
+        if (input[0] === ":\r") input.shift();
+        statement = statement[1];
+      }
+      if (statement === undefined) {
+        res.render("error", { title: "PAGE NOT FOUND" });
+      }
+      output = statement.split("\n");
+      if (output[0] === ":\r") output.shift();
+      subtask_len = subtasks.length;
+      res.render("details", {
         question: result,
-        title: 'Problem Statement',
+        title: "Problem Statement",
         details: {
           ps,
           input,
@@ -624,14 +717,14 @@ app.get('/questions/:id', (req, res) => {
           sample_output,
           explanation,
         },
-      })
+      });
     })
     .catch((err) => {
-      console.log(err)
-    })
-})
+      console.log(err);
+    });
+});
 
 // 404 page
 app.use((req, res) => {
-  res.render('error', { title: 'PAGE NOT FOUND' })
-})
+  res.render("error", { title: "PAGE NOT FOUND" });
+});
